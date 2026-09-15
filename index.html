@@ -23,8 +23,8 @@
       --gold-warm: #fbbf24;
       --gold-glow: rgba(251, 191, 36, 0.25);
       --bg-dark: #050609;
-      --card-bg: rgba(10, 12, 20, 0.76);
-      --card-border: rgba(251, 191, 36, 0.2);
+      --card-bg: rgba(10, 12, 20, 0.78);
+      --card-border: rgba(251, 191, 36, 0.22);
       --text-main: #f8fafc;
       --text-muted: #cbd5e1;
     }
@@ -92,7 +92,7 @@
       z-index: 100;
       display: flex;
       flex-direction: column;
-      background: rgba(8, 10, 16, 0.94);
+      background: rgba(8, 10, 16, 0.95);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(251, 191, 36, 0.3);
@@ -139,7 +139,6 @@
       background: rgba(244, 63, 94, 0.08);
     }
 
-    /* Right to Left Animation for Ghazal */
     .ticker-content-rtl {
       display: inline-block;
       white-space: nowrap;
@@ -151,7 +150,6 @@
       color: var(--accent);
     }
 
-    /* Left to Right / Subtle Flow for Song */
     .ticker-content-ltr {
       display: inline-block;
       white-space: nowrap;
@@ -179,49 +177,6 @@
     @keyframes tickerLTR {
       0% { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(100%, 0, 0); }
-    }
-
-    /* Floating Music Control Widget */
-    .music-widget {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 101;
-      background: rgba(14, 16, 26, 0.88);
-      border: 1px solid rgba(251, 191, 36, 0.4);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 999px;
-      padding: 8px 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px rgba(251, 191, 36, 0.2);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .music-widget:hover {
-      transform: translateY(-2px);
-      border-color: var(--gold-warm);
-      box-shadow: 0 12px 35px rgba(251, 191, 36, 0.35);
-    }
-    .music-icon {
-      font-size: 1.1rem;
-      animation: musicRotate 4s linear infinite;
-      display: inline-block;
-    }
-    .music-widget.paused .music-icon {
-      animation-play-state: paused;
-    }
-    .music-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #fde68a;
-      letter-spacing: 0.05em;
-    }
-    @keyframes musicRotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
     }
 
     /* Canvases */
@@ -332,11 +287,43 @@
       transform: translateY(0) scale(1);
     }
 
-    /* Circular Photo Frame with Mehndi Image */
-    .photo-scene {
-      width: 130px;
-      height: 130px;
+    /* Animated Photo Stage with Cartoon Flanks */
+    .photo-stage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
       margin: 0 auto 22px auto;
+      position: relative;
+    }
+
+    .side-character {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: floatChar 3s ease-in-out infinite alternate;
+    }
+    .side-character.char-right {
+      animation-delay: -1.5s;
+    }
+    .char-avatar {
+      font-size: 2.2rem;
+      filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.5));
+    }
+    .char-heart {
+      font-size: 1.1rem;
+      animation: pulseGlow 1.8s ease-in-out infinite;
+    }
+
+    @keyframes floatChar {
+      0% { transform: translateY(0px) rotate(-3deg); }
+      100% { transform: translateY(-10px) rotate(3deg); }
+    }
+
+    .photo-scene {
+      width: 125px;
+      height: 125px;
       position: relative;
       display: flex;
       align-items: center;
@@ -352,15 +339,15 @@
     }
     .photo-ring {
       position: absolute;
-      width: 124px;
-      height: 124px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       border: 2px dashed rgba(251, 191, 36, 0.7);
       animation: rotateRing 14s linear infinite;
     }
     .photo-circle {
-      width: 104px;
-      height: 104px;
+      width: 102px;
+      height: 102px;
       border-radius: 50%;
       overflow: hidden;
       position: relative;
@@ -378,9 +365,6 @@
       transform: scale(1.05);
       transition: transform 0.4s ease;
     }
-    .photo-circle:hover img {
-      transform: scale(1.12);
-    }
 
     @keyframes pulseGlow {
       0%, 100% { transform: scale(0.9); opacity: 0.5; }
@@ -397,6 +381,7 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 16px;
+      gap: 10px;
     }
     .back-btn {
       background: rgba(255, 255, 255, 0.06);
@@ -418,6 +403,27 @@
       color: #fff;
       border-color: var(--accent);
       transform: translateX(-2px);
+    }
+
+    /* 10-Heart Visual Question Tracker */
+    .heart-tracker-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      font-size: 0.82rem;
+    }
+    .step-heart {
+      color: rgba(255, 255, 255, 0.25);
+      transition: all 0.3s ease;
+    }
+    .step-heart.filled {
+      color: var(--primary);
+      text-shadow: 0 0 8px rgba(244, 63, 94, 0.85);
+      transform: scale(1.15);
     }
 
     .badge {
@@ -575,16 +581,10 @@
 </head>
 <body>
 
-  <!-- Audio Element (Using your uploaded zara_si_dosti.mp3) -->
-  <audio id="bgMusic" loop preload="auto">
+  <!-- Audio Element with autoplay & loop -->
+  <audio id="bgMusic" loop preload="auto" autoplay>
     <source src="zara_si_dosti.mp3" type="audio/mpeg">
   </audio>
-
-  <!-- Floating Music Play/Pause Button -->
-  <div class="music-widget" id="musicBtn" onclick="toggleMusic()">
-    <span class="music-icon">🎵</span>
-    <span class="music-label" id="musicLabel">Zara Si Dosti (Play)</span>
-  </div>
 
   <!-- Cinematic Background Layer -->
   <div class="bg-image-layer"></div>
@@ -592,12 +592,9 @@
 
   <!-- 3-Tier Announcement Header -->
   <div class="ticker-header">
-    <!-- Tier 1: Fixed Love Banner -->
     <div class="ticker-fixed-top">
       ♥ LOVE LOVE LOVE <span>•</span> EHTESHAM LOVES JIA <span>•</span> FOREVER AND ALWAYS ♥
     </div>
-
-    <!-- Tier 2: Moving Ghazal (Right to Left) -->
     <div class="ticker-row row-ghazal">
       <div class="ticker-content-rtl">
         <span class="ticker-item">اگر یہ کہہ دو بغیر میرے نہیں گزارہ تو میں تمہارا</span>
@@ -609,8 +606,6 @@
         <span class="ticker-item"><span>♥</span> تمام چھوڑو بس ایک کر لو جو استخارہ تو میں تمہارا</span>
       </div>
     </div>
-
-    <!-- Tier 3: Moving Song Lyrics (Zara Si Dosti Kar Lo) -->
     <div class="ticker-row row-song">
       <div class="ticker-content-ltr">
         <span class="ticker-item">Zara si dosti kar lo... zara sa humsafar ban jao</span>
@@ -631,13 +626,23 @@
   <div class="wrapper">
     <div class="progress-bar" id="progressBar"></div>
 
-    <!-- Screen 0: Intro Screen -->
+    <!-- Screen 0: Intro Screen with Animated Characters & Mehndi Photo -->
     <div class="card active" id="card-0">
-      <div class="photo-scene">
-        <div class="photo-glow"></div>
-        <div class="photo-ring"></div>
-        <div class="photo-circle">
-          <img src="mehndi.jpg" alt="Jia" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300'">
+      <div class="photo-stage">
+        <div class="side-character">
+          <span class="char-heart">💖</span>
+          <span class="char-avatar">🤵🏻‍♂️</span>
+        </div>
+        <div class="photo-scene">
+          <div class="photo-glow"></div>
+          <div class="photo-ring"></div>
+          <div class="photo-circle">
+            <img src="mehndi.jpg" alt="Jia" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300'">
+          </div>
+        </div>
+        <div class="side-character char-right">
+          <span class="char-heart">💕</span>
+          <span class="char-avatar">👰🏻‍♀️</span>
         </div>
       </div>
       <div style="text-align: center; margin-bottom: 18px;">
@@ -675,31 +680,36 @@
   <script>
     const USER_ACCESS_KEY = "fbfc4e5a-a729-4f62-8683-b04a8e947cf9";
 
-    // Audio Engine Handling
+    // Persistent Guaranteed Autoplay Audio System
     const audio = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    const musicLabel = document.getElementById('musicLabel');
-    let isPlaying = false;
+    let hasPlayed = false;
 
-    function toggleMusic() {
-      if (isPlaying) {
-        audio.pause();
-        musicBtn.classList.add('paused');
-        musicLabel.innerText = "Zara Si Dosti (Play)";
-        isPlaying = false;
-      } else {
+    function playAudioSafe() {
+      if (!hasPlayed) {
         audio.play().then(() => {
-          musicBtn.classList.remove('paused');
-          musicLabel.innerText = "Playing: Zara Si Dosti";
-          isPlaying = true;
-        }).catch(() => {});
+          hasPlayed = true;
+        }).catch(() => {
+          // If browser blocked initial silent load, attach to first interaction
+          const unlock = () => {
+            audio.play().then(() => {
+              hasPlayed = true;
+              window.removeEventListener('touchstart', unlock);
+              window.removeEventListener('click', unlock);
+              window.removeEventListener('scroll', unlock);
+            }).catch(() => {});
+          };
+          window.addEventListener('touchstart', unlock, { once: true });
+          window.addEventListener('click', unlock, { once: true });
+          window.addEventListener('scroll', unlock, { once: true });
+        });
       }
     }
 
+    window.addEventListener('DOMContentLoaded', playAudioSafe);
+    window.addEventListener('load', playAudioSafe);
+
     function startExperience() {
-      if (!isPlaying) {
-        toggleMusic();
-      }
+      playAudioSafe();
       goToStep(1);
     }
 
@@ -799,6 +809,14 @@
       progressBar.appendChild(p);
     }
 
+    function renderHeartTracker(currentStep) {
+      let hearts = '';
+      for (let h = 1; h <= 10; h++) {
+        hearts += `<span class="step-heart ${h <= currentStep ? 'filled' : ''}">♥</span>`;
+      }
+      return `<div class="heart-tracker-badge">${hearts}</div>`;
+    }
+
     questionsData.forEach((item, idx) => {
       const step = idx + 1;
       const card = document.createElement('div');
@@ -828,7 +846,7 @@
           <button class="back-btn" onclick="goToStep(${step - 1})">
             <span>&larr;</span> Back
           </button>
-          <div class="badge">Question 0${step < 10 ? '0' + step : step} / 10</div>
+          ${renderHeartTracker(step)}
         </div>
         <h2>${item.q}</h2>
         <p class="subtitle">Choose an option or type your own below.</p>
@@ -867,6 +885,7 @@
     }
 
     function goToStep(step) {
+      playAudioSafe();
       document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
       const nextCard = document.getElementById('card-' + step);
       if (nextCard) nextCard.classList.add('active');
@@ -931,7 +950,7 @@
       fx.innerHTML = '';
 
       let items = ['✨', '💖'];
-      if (step === 0) items = ['✨', '✦', '🤍', '💫'];
+      if (step === 0) items = ['✨', '✦', '🤍', '💫', '🌹'];
       else if (step === 1) items = ['🌹', '🥀', '🍃'];
       else if (step === 2) items = ['💖', '💕', '💗'];
       else if (step === 3) items = ['🫧', '⚪', '✨'];
@@ -944,7 +963,7 @@
       else if (step === 10) items = ['💘', '💝', '💖', '💍'];
       else if (step === 11) items = ['🎉', '💖', '👑', '🥂', '✨'];
 
-      for (let i = 0; i < 22; i++) {
+      for (let i = 0; i < 24; i++) {
         const el = document.createElement('div');
         el.innerText = items[Math.floor(Math.random() * items.length)];
         el.style.position = 'absolute';
