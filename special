@@ -6,7 +6,7 @@
   <title>For My Jia | Ehtesham</title>
   
   <meta name="description" content="A special personal sanctuary built with love for Jia by Ehtesham.">
-  <meta name="theme-color" content="#050608">
+  <meta name="theme-color" content="#050609">
   <meta property="og:title" content="A Special Message for Jia">
   <meta property="og:description" content="Every line of code, every heartbeat, only for you.">
   <meta property="og:type" content="website">
@@ -51,7 +51,7 @@
       cursor: default;
     }
 
-    /* Cinematic Winter Cabin Backdrop with Slow Drift Animation */
+    /* Cinematic Winter Cabin Backdrop */
     .bg-image-layer {
       position: fixed;
       top: 0;
@@ -72,7 +72,6 @@
       100% { transform: scale(1.08); }
     }
 
-    /* Luxury Vignette & Atmospheric Fog Gradients */
     .bg-vignette {
       position: fixed;
       top: 0;
@@ -151,7 +150,7 @@
       100% { transform: translate3d(100%, 0, 0); }
     }
 
-    /* Ambient Touch & Particle Canvases */
+    /* Canvases */
     #bg-canvas, #touch-canvas {
       position: fixed;
       top: 0;
@@ -176,7 +175,7 @@
       overflow: hidden;
     }
 
-    /* Glowing Warm Hearth Orbs */
+    /* Ambient Hearth Orbs */
     .orb {
       position: fixed;
       border-radius: 50%;
@@ -239,7 +238,7 @@
       box-shadow: 0 0 12px rgba(251, 191, 36, 0.7);
     }
 
-    /* Ultra-Premium Frosted Glass Card */
+    /* Frosted Glass Card */
     .card {
       background: var(--card-bg);
       backdrop-filter: blur(48px);
@@ -259,17 +258,17 @@
       transform: translateY(0) scale(1);
     }
 
-    /* 3D Animated Hearth Heart */
-    .heart-scene {
-      width: 110px;
-      height: 110px;
+    /* Circular Photo Frame with Ambient Light Ring */
+    .photo-scene {
+      width: 115px;
+      height: 115px;
       margin: 0 auto 22px auto;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .heart-glow {
+    .photo-glow {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -277,28 +276,32 @@
       background: radial-gradient(circle, rgba(251, 191, 36, 0.45), transparent 70%);
       animation: pulseGlow 2.5s ease-in-out infinite;
     }
-    .heart-icon {
-      font-size: 3.6rem;
-      position: relative;
-      z-index: 2;
-      filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.9));
-      animation: heartBeat 1.8s ease-in-out infinite;
-    }
-    .heart-ring {
+    .photo-ring {
       position: absolute;
-      width: 95px;
-      height: 95px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       border: 1.5px dashed rgba(251, 191, 36, 0.6);
-      animation: rotateRing 12s linear infinite;
+      animation: rotateRing 14s linear infinite;
     }
-    @keyframes heartBeat {
-      0%, 100% { transform: scale(1); }
-      14% { transform: scale(1.15); }
-      28% { transform: scale(1); }
-      42% { transform: scale(1.1); }
-      70% { transform: scale(1); }
+    .photo-circle {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+      border: 2px solid rgba(251, 191, 36, 0.8);
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+      background-color: #111420;
     }
+    .photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     @keyframes pulseGlow {
       0%, 100% { transform: scale(0.9); opacity: 0.5; }
       50% { transform: scale(1.3); opacity: 0.85; }
@@ -453,6 +456,13 @@
       display: inline-block;
       animation: heartBeat 1.5s ease-in-out infinite;
     }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.15); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.1); }
+      70% { transform: scale(1); }
+    }
   </style>
 </head>
 <body>
@@ -493,18 +503,21 @@
 
     <!-- Screen 0: Intro Screen -->
     <div class="card active" id="card-0">
-      <div class="heart-scene">
-        <div class="heart-glow"></div>
-        <div class="heart-ring"></div>
-        <div class="heart-icon">💖</div>
+      <div class="photo-scene">
+        <div class="photo-glow"></div>
+        <div class="photo-ring"></div>
+        <div class="photo-circle">
+          <img src="photo.jpg" alt="Jia" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300'">
+        </div>
       </div>
       <div class="badge">ONLY FOR JIA</div>
-      <h1>A Small Space Just For You &amp; Me</h1>
+      <h1>Jia Meri Jaan</h1>
       <div class="poetry-box">
-        "Na janay kis liye hum rooth baithay aik doojay se,<br>
-        Magar ab shaam ka sona nahi achha laga hum ko."
+        "Kaise bataun main tumhe mere liye tum kaun ho..."
       </div>
-      <p class="subtitle">Khamoshi bohot lambi ho gayi hai. Aage 10 sawalat hain, jo feel ho raha hai honestly select karo ya khud likh do.</p>
+      <p class="subtitle">
+        Pichle kuch dino mein jo bhi hua, main chahta hoon hum dono bilkul aik page par aa jayein. Tum bas in sawalat ke honestly jawab do, taake hamara bond dobara pehle se bhi zyada pyara ho jaye.
+      </p>
       <button class="primary-btn" onclick="goToStep(1)">Start &rarr;</button>
     </div>
 
@@ -721,12 +734,10 @@
         }
       }
 
-      // Local storage backup
       try {
         localStorage.setItem('jia_truce_answers', formattedText);
       } catch (e) {}
 
-      // Background Email API
       try {
         await fetch("https://api.web3forms.com/submit", {
           method: "POST",
@@ -743,7 +754,6 @@
       }
     }
 
-    // Shortcut to view backup answers on final screen: Ctrl + Shift + R
     window.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'r') {
         const saved = localStorage.getItem('jia_truce_answers');
@@ -752,7 +762,7 @@
       }
     });
 
-    /* 10 Unique Screen Animations */
+    /* Unique Screen Animations */
     function triggerUniqueScreenFX(step) {
       const fx = document.getElementById('fxLayer');
       fx.innerHTML = '';
@@ -840,7 +850,7 @@
       }
     }
 
-    /* Touch & Cursor Sparkle Trail Canvas */
+    /* Touch & Cursor Trail */
     const touchCanvas = document.getElementById('touch-canvas');
     const touchCtx = touchCanvas.getContext('2d');
     let touchSparks = [];
