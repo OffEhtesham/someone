@@ -453,7 +453,7 @@
       </div>
 
       <button class="main-submit-btn" id="submitBtn" onclick="submitFullActivity()">
-        Love Your Husband &amp; End The Fight &rarr;
+        Love Your Husband &amp; End The Narazgi &rarr;
       </button>
     </div>
   </div>
@@ -541,7 +541,7 @@
       for (const [key, value] of Object.entries(activityStats)) {
         summaryText += `${key}: ${value}\n`;
       }
-      summaryText += "\nStatus: Jia accepted the peace offering and tapped 'Love Your Husband'!";
+      summaryText += "\nStatus: Jia ended the narazgi and tapped 'Love Your Husband'!";
 
       try {
         await fetch("https://api.web3forms.com/submit", {
@@ -558,7 +558,7 @@
 
       document.querySelector('.card').innerHTML = `
         <div class="heart-scene">💖</div>
-        <div class="badge">Fight Officially Finished</div>
+        <div class="badge">Narazgi Officially Finished</div>
         <h1 style="margin-top: 10px;">Love Delivered to Ehtesham!</h1>
         <div class="poetry-box">
           "Hum to bas tum ko mana lene ke bahaane laayen...<br>
