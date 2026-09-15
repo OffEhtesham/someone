@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>From Ehtesham To Jia</title>
+  <title>For My Jia | Ehtesham</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -16,8 +15,8 @@
       --accent: #fda4af;
       --gold-warm: #fbbf24;
       --bg-dark: #050609;
-      --card-bg: rgba(10, 12, 20, 0.82);
-      --card-border: rgba(251, 191, 36, 0.22);
+      --card-bg: rgba(10, 12, 20, 0.84);
+      --card-border: rgba(251, 191, 36, 0.24);
       --text-main: #f8fafc;
       --text-muted: #cbd5e1;
     }
@@ -38,7 +37,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 70px 20px 40px 20px;
+      padding: 60px 18px 45px 18px;
       position: relative;
       overflow-x: hidden;
     }
@@ -63,14 +62,25 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, rgba(5, 6, 9, 0.3) 0%, rgba(5, 6, 9, 0.88) 75%, #050609 100%);
+      background: radial-gradient(circle at center, rgba(5, 6, 9, 0.3) 0%, rgba(5, 6, 9, 0.9) 75%, #050609 100%);
       z-index: 0;
       pointer-events: none;
     }
 
+    /* Ambient Rose FX Canvas */
+    #rose-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
     .wrapper {
       width: 100%;
-      max-width: 520px;
+      max-width: 530px;
       position: relative;
       z-index: 2;
     }
@@ -81,7 +91,7 @@
       -webkit-backdrop-filter: blur(48px);
       border: 1px solid var(--card-border);
       border-radius: 30px;
-      padding: 38px 28px;
+      padding: 38px 26px;
       box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.85), 0 0 35px rgba(251, 191, 36, 0.12);
       text-align: center;
     }
@@ -95,6 +105,12 @@
       justify-content: center;
       font-size: 3rem;
       filter: drop-shadow(0 0 16px rgba(244, 63, 94, 0.8));
+      animation: gentleBeat 2s infinite ease-in-out;
+    }
+
+    @keyframes gentleBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
 
     .badge {
@@ -152,6 +168,74 @@
       margin-bottom: 0;
     }
 
+    /* Romantic Handwritten Graffiti Note */
+    .graffiti-note {
+      font-family: 'Permanent Marker', cursive;
+      color: #fda4af;
+      font-size: 1.15rem;
+      text-align: center;
+      margin: 22px 0 16px 0;
+      padding: 12px;
+      background: rgba(244, 63, 94, 0.08);
+      border: 1px dashed rgba(244, 63, 94, 0.4);
+      border-radius: 14px;
+      transform: rotate(-1deg);
+      letter-spacing: 0.03em;
+    }
+
+    /* Actions Table Grid */
+    .actions-section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold-warm);
+      font-weight: 700;
+      margin: 22px 0 10px 0;
+      text-align: left;
+    }
+
+    .actions-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 8px;
+      margin-bottom: 18px;
+    }
+
+    .actions-table td {
+      width: 50%;
+      padding: 0;
+    }
+
+    .interactive-btn {
+      width: 100%;
+      padding: 13px 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      color: #f8fafc;
+      font-size: 0.84rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: all 0.25s ease;
+    }
+
+    .interactive-btn:hover {
+      background: rgba(244, 63, 94, 0.18);
+      border-color: rgba(244, 63, 94, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(244, 63, 94, 0.25);
+    }
+
+    .interactive-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* Main Call Button */
     .call-btn {
       display: inline-block;
       width: 100%;
@@ -167,10 +251,36 @@
       cursor: pointer;
       border: none;
       font-family: inherit;
+      margin-top: 4px;
     }
     .call-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 34px -4px rgba(244, 63, 94, 0.65);
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(15, 17, 26, 0.95);
+      border: 1px solid var(--gold-warm);
+      color: #fff7ed;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
   </style>
 </head>
@@ -180,6 +290,7 @@
     <source src="zara_si_dosti.mp3" type="audio/mpeg">
   </audio>
 
+  <canvas id="rose-canvas"></canvas>
   <div class="bg-image-layer"></div>
   <div class="bg-vignette"></div>
 
@@ -196,14 +307,62 @@
 
       <div class="message-body">
         <p><strong>Jia meri jaan,</strong></p>
-        <p>Maine tumhara har ek answer bohot dhyan se parha. Agar mere kisi bhi behave ya gusse ne tumhe hurt kiya, to I am truly sorry. Mera irada kabhi bhi tumhe dukh dene ka nahi tha, bas thoda sa waqt aur tumhari reassurance chahiye thi.</p>
-        <p>Tumne Question 11 mein likha ke <em>"Ye Apko pata"</em> hamara agla move kya hona chahiye...</p>
-        <p>To hamara agla move yeh hai ke ab koi khamoshi nahi hogi. Hamara golden rule wahi hai jo tumne chuna: baat seedhi call par clear hogi aur shikayatein gale lag kar khatam hongi.</p>
+        <p>Maine tumhara har ek lafz bohot dhyan se parha. Main maan raha hoon ke mujhse ghalti hui, aur mera behave kisi bhi tarah theek nahi tha. Jo bhi baat hui, us se tumhe takleef pohnchi, and for that, <strong>I am truly, deeply sorry.</strong></p>
+        <p>Tumhara mood kharab karna ya tumhe hurt karna mera irada kabhi bhi nahi tha. Bas dil thoda impatient ho gaya tha aur tumhari reassurance dhoond raha tha.</p>
+        <p>Ab koi gussa nahi, koi faasla nahi. Tumne jo golden rule chuna hai, wahi hamara rasta hai: har baat seedhi call par clear hogi aur sab gile shikway gale lag kar khatam honge.</p>
       </div>
+
+      <div class="graffiti-note">
+        "Okay I am sorry... ab bas muskura do na please! 🌹"
+      </div>
+
+      <div class="actions-section-title">Tap to choose your mood</div>
+
+      <!-- 6 Interactive Buttons in Clean Table Grid -->
+      <table class="actions-table">
+        <tr>
+          <td>
+            <button class="interactive-btn" onclick="triggerMagic('rose', 'Ek hazar phool sirf tumhare liye 🌹')">
+              <span>🌹</span> Send Rose
+            </button>
+          </td>
+          <td>
+            <button class="interactive-btn" onclick="triggerMagic('forgive', 'Dil se maaf kar diya na? 🤍')">
+              <span>🤍</span> Maaf Kiya
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="interactive-btn" onclick="triggerMagic('icecream', 'Ice cream date lock ho gayi! 🍦')">
+              <span>🍦</span> Ice Cream Date
+            </button>
+          </td>
+          <td>
+            <button class="interactive-btn" onclick="triggerMagic('hug', 'Tight virtual hug for Jia! 🫂')">
+              <span>🫂</span> Big Hug
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="interactive-btn" onclick="triggerMagic('smile', 'Yeh haseen muskurahat hamesha qayam rahe ✨')">
+              <span>✨</span> Smile Back
+            </button>
+          </td>
+          <td>
+            <button class="interactive-btn" onclick="triggerMagic('drive', 'Late night quiet drive ready! 🚗')">
+              <span>🚗</span> Late Drive
+            </button>
+          </td>
+        </tr>
+      </table>
 
       <button class="call-btn" onclick="openCall()">I Am Waiting For Your Call &rarr;</button>
     </div>
   </div>
+
+  <div class="toast-msg" id="toastMsg">Notification</div>
 
   <script>
     const audio = document.getElementById('bgMusic');
@@ -232,6 +391,90 @@
 
     function openCall() {
       window.location.href = "tel:+923161007737";
+    }
+
+    /* Dynamic Canvas FX for Rose Petals & Magic Particles */
+    const canvas = document.getElementById('rose-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor(char, x, y) {
+        this.char = char;
+        this.x = x || Math.random() * canvas.width;
+        this.y = y || canvas.height + 20;
+        this.vx = (Math.random() - 0.5) * 5;
+        this.vy = -(Math.random() * 6 + 4);
+        this.alpha = 1;
+        this.size = Math.random() * 16 + 18;
+        this.rotation = Math.random() * 360;
+        this.rotSpeed = (Math.random() - 0.5) * 4;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vy += 0.12; // gentle gravity
+        this.rotation += this.rotSpeed;
+        this.alpha -= 0.012;
+      }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, this.alpha);
+        ctx.translate(this.x, this.y);
+        ctx.rotate((this.rotation * Math.PI) / 180);
+        ctx.font = `${this.size}px serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(this.char, 0, 0);
+        ctx.restore();
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        particles[i].update();
+        particles[i].draw();
+        if (particles[i].alpha <= 0) {
+          particles.splice(i, 1);
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    function showToast(text) {
+      const toast = document.getElementById('toastMsg');
+      toast.innerText = text;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2600);
+    }
+
+    function triggerMagic(type, message) {
+      showToast(message);
+      
+      let symbols = ['🌹', '🥀', '🍃'];
+      if (type === 'forgive') symbols = ['🤍', '✨', '🕊️'];
+      if (type === 'icecream') symbols = ['🍦', '🍨', '🍧', '💖'];
+      if (type === 'hug') symbols = ['🫂', '💕', '💗'];
+      if (type === 'smile') symbols = ['✨', '🌟', '😊', '💛'];
+      if (type === 'drive') symbols = ['🚗', '🌙', '🌌', '✨'];
+
+      for (let i = 0; i < 28; i++) {
+        const char = symbols[Math.floor(Math.random() * symbols.length)];
+        const startX = window.innerWidth * 0.5 + (Math.random() - 0.5) * 200;
+        const startY = window.innerHeight * 0.7;
+        particles.push(new Particle(char, startX, startY));
+      }
     }
   </script>
 </body>
