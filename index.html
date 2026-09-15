@@ -1,217 +1,408 @@
-یہ رہا مکمل کوڈ رومن اردو (Roman Urdu) میں۔ فونٹ کو بھی صاف اور ماڈرن انگلش اسٹائل میں سیٹ کر دیا ہے تاکہ پڑھنے میں ایک دم خوبصورت لگے۔
-
-بس اپنی ریپوزٹری میں جا کر `index.html` کا سارا کوڈ مٹا کر یہ نیا کوڈ پیسٹ کر دیں۔
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Special Message for Jia</title>
+  <title>For Someone Special</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #f43f5e;
+      --primary-hover: #e11d48;
+      --accent: #fb7185;
+      --bg-dark: #07090e;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
+
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', sans-serif;
       min-height: 100vh;
-      background: radial-gradient(circle at top, #2e0854, #120324);
-      color: #fce7f3;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 24px 16px;
+      position: relative;
+      overflow-x: hidden;
     }
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 24px;
-      padding: 35px 25px;
-      max-width: 440px;
+
+    /* Ambient luxury light spheres */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: 0;
+      pointer-events: none;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(244, 63, 94, 0.25), transparent 70%);
+      top: 5%;
+      left: 10%;
+    }
+    .orb-2 {
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.2), transparent 70%);
+      bottom: 5%;
+      right: 10%;
+      animation-delay: -6s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-40px) scale(1.1); }
+    }
+
+    .wrapper {
       width: 100%;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      max-width: 480px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Progress pill */
+    .progress-bar {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .pill {
+      height: 4px;
+      width: 28px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 99px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .pill.active {
+      width: 48px;
+      background: var(--primary);
+      box-shadow: 0 0 12px rgba(244, 63, 94, 0.5);
+    }
+
+    /* Glass card container */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 40px 28px;
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.65);
       display: none;
-      animation: fadeIn 0.5s ease forwards;
+      opacity: 0;
+      transform: translateY(18px) scale(0.98);
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .card.active {
       display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(244, 63, 94, 0.12);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 20px;
     }
-    h2 {
-      font-size: 1.6rem;
-      margin-bottom: 14px;
-      color: #f472b6;
-      font-weight: 700;
+
+    h1, h2 {
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      color: #ffffff;
     }
-    .sher {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      line-height: 1.8;
+
+    .poetry-box {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      line-height: 1.7;
       font-style: italic;
-      margin: 18px 0;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 18px;
-      border-radius: 16px;
-      border-left: 3px solid #ec4899;
+      color: #ffe4e6;
+      background: rgba(255, 255, 255, 0.025);
+      border-left: 2px solid var(--primary);
+      padding: 18px 20px;
+      border-radius: 0 16px 16px 0;
+      margin: 22px 0;
+      text-align: left;
     }
-    p {
+
+    p.subtitle {
+      font-size: 0.95rem;
       line-height: 1.6;
-      font-size: 0.98rem;
-      color: #e2e8f0;
-      margin-bottom: 15px;
+      color: var(--text-muted);
+      margin-bottom: 26px;
     }
-    .photo-frame {
-      width: 125px;
-      height: 125px;
-      margin: 0 auto 18px;
-      border-radius: 50%;
-      border: 3px solid #ec4899;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(236, 72, 153, 0.35);
+
+    .avatar-wrapper {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 22px;
+      position: relative;
     }
-    .photo-frame img {
+    .avatar-ring {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--primary), rgba(168, 85, 247, 0.4));
+      box-shadow: 0 0 25px rgba(244, 63, 94, 0.35);
     }
-    .btn-group {
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #1e293b;
+    }
+
+    /* Interactive Quiz Options */
+    .options-grid {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-top: 20px;
+      margin-top: 10px;
     }
-    button, .action-link {
-      background: linear-gradient(135deg, #ec4899, #be185d);
-      color: white;
-      border: none;
-      padding: 14px 18px;
+    .opt-btn {
+      width: 100%;
+      text-align: left;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      color: var(--text-main);
+      font-size: 0.96rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+    .opt-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(244, 63, 94, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    }
+    .opt-btn span.icon {
+      opacity: 0.4;
+      font-size: 1.1rem;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .opt-btn:hover span.icon {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    /* Primary CTA */
+    .primary-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #f43f5e, #be123c);
+      color: #fff;
+      font-weight: 500;
       font-size: 1rem;
-      font-weight: 600;
-      border-radius: 14px;
+      padding: 16px 24px;
+      border-radius: 16px;
+      border: none;
       cursor: pointer;
       font-family: inherit;
-      transition: all 0.2s ease;
+      box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.45);
+      transition: all 0.25s ease;
+      display: inline-block;
       text-decoration: none;
-      display: block;
+      text-align: center;
+      box-sizing: border-box;
     }
-    button:hover, .action-link:hover {
+    .primary-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(236, 72, 153, 0.4);
+      box-shadow: 0 14px 30px -4px rgba(244, 63, 94, 0.6);
+      filter: brightness(1.05);
     }
-    button.alt-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    button.alt-btn:hover {
-      background: rgba(255, 255, 255, 0.18);
-    }
-    .dots {
-      margin-top: 18px;
-      font-size: 0.85rem;
-      opacity: 0.5;
+
+    /* Feedback alert animation */
+    .note-tag {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-top: 14px;
+      text-align: center;
+      display: block;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
 
-  <!-- Step 1: Greeting -->
-  <div class="card active" id="step1">
-    <div class="photo-frame">
-      <img src="photo.jpg" alt="Special Photo" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400'">
-    </div>
-    <h2>Do Din Bohat Lambay Hotay Hain...</h2>
-    <div class="sher">
-      "Na janay kis liye hum rooth baithay aik doojay se,<br>
-      Magar ab shaam ka sona nahi achha laga hum ko."
-    </div>
-    <p>Baat band hai lekin khayal to har lamha hai na? Kuch chotay se sawal hain, sach sach jawab dena hoga.</p>
-    <div class="btn-group">
-      <button onclick="goTo(2)">Aage Chalo Aur Jawab Do &rarr;</button>
-    </div>
-    <div class="dots">1 / 4</div>
-  </div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
 
-  <!-- Step 2: Question 1 -->
-  <div class="card" id="step2">
-    <h2>Pehla Sawal</h2>
-    <p style="font-size: 1.1rem; margin-bottom: 22px;">
-      Yeh jo 2 din se khamoshi chal rahi hai, is doran sab se zyada kis ne yaad kiya hoga?
-    </p>
-    <div class="btn-group">
-      <button onclick="selectAns('Maine zyada yaad kiya', 3)">Zahir hai maine (Jia ne)</button>
-      <button class="alt-btn" onclick="selectAns('Ehtesham ne zyada yaad kiya', 3)">Ehtesham ne, wo pagal ho raha hai</button>
-      <button class="alt-btn" onclick="selectAns('Dono ne barabar yaad kiya', 3)">Dono ne barabar, bas zid beech mein agayi</button>
+  <div class="wrapper">
+    <!-- Progress Indicator -->
+    <div class="progress-bar">
+      <div class="pill active" id="p1"></div>
+      <div class="pill" id="p2"></div>
+      <div class="pill" id="p3"></div>
+      <div class="pill" id="p4"></div>
+      <div class="pill" id="p5"></div>
     </div>
-    <div class="dots">2 / 4</div>
-  </div>
 
-  <!-- Step 3: Question 2 -->
-  <div class="card" id="step3">
-    <h2>Dusra Sawal</h2>
-    <p style="font-size: 1.1rem; margin-bottom: 22px;">
-      Gussa khatam karne ke liye kya plan sab se behtar rahay ga?
-    </p>
-    <div class="btn-group">
-      <button onclick="selectAns('Ehtesham treat de', 4)">Ehtesham aik achi si treat de</button>
-      <button class="alt-btn" onclick="selectAns('Lambi call aur hansi', 4)">Aik lambi call ho jis mein sirf hansi mazaq ho</button>
-      <button class="alt-btn" onclick="selectAns('Gussa khatam maan rahi hoon', 4)">Bas bohat ho gaya gussa, ab maan rahi hoon</button>
+    <!-- Step 1: Opening -->
+    <div class="card active" id="step1">
+      <div class="avatar-wrapper">
+        <div class="avatar-ring">
+          <img class="avatar-img" src="photo.jpg" alt="Profile" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300'">
+        </div>
+      </div>
+      <div class="badge">A Quick Reminder</div>
+      <h1>Two Days Is Far Too Long</h1>
+      <div class="poetry-box">
+        "Na janay kis liye hum rooth baithay aik doojay se,<br>
+        Magar ab shaam ka sona nahi achha laga hum ko."
+      </div>
+      <p class="subtitle">Khamoshi bohot lambi ho gayi hai. Zid ko thodi der side pe rakh ke aage chaltay hain?</p>
+      <button class="primary-btn" onclick="nextStep(2)">Aage Chalo &rarr;</button>
     </div>
-    <div class="dots">3 / 4</div>
-  </div>
 
-  <!-- Step 4: Resolution & WhatsApp -->
-  <div class="card" id="step4">
-    <h2>Ab Muskura Bhi Dain!</h2>
-    <div class="sher">
-      "Tum jo hans do to sabhi ranj mitaane aayen,<br>
-      Hum to bas tum ko mana lene ke bahaane laayen."
+    <!-- Step 2: Question 1 -->
+    <div class="card" id="step2">
+      <div class="badge">Question 01</div>
+      <h2>Yeh batao, in do dino mein zyada miss kisne kiya?</h2>
+      <p class="subtitle">Sach bolna compulsory hai, cheating allowed nahi hai.</p>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="saveAnswer('Maine zyada miss kiya', 3)">
+          <span>Obviously maine, par show nahi kiya</span>
+          <span class="icon">&rarr;</span>
+        </button>
+        <button class="opt-btn" onclick="saveAnswer('Ehtesham ne miss kiya', 3)">
+          <span>Ehtesham ne, uski to neendain urri huwi hain</span>
+          <span class="icon">&rarr;</span>
+        </button>
+        <button class="opt-btn" onclick="saveAnswer('Dono ne barabar miss kiya', 3)">
+          <span>Dono ne equally, bas faltu ki ego aa gayi</span>
+          <span class="icon">&rarr;</span>
+        </button>
+      </div>
     </div>
-    <p>
-      N नाराजगी apni jagah, lekin aap ki muskurahat bohat zaroori hai. Neechay click karein aur WhatsApp par reply bhaijein!
-    </p>
-    <div class="btn-group">
-      <a id="waBtn" class="action-link" href="#" target="_blank">Maan Gayi, Message Karo &rarr;</a>
+
+    <!-- Step 3: Question 2 -->
+    <div class="card" id="step3">
+      <div class="badge">Question 02</div>
+      <h2>Current mood kya chal raha hai?</h2>
+      <p class="subtitle">Screen ke peeche ka asli reaction select karein.</p>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="saveAnswer('Abhi bhi thoda sa gussa', 4)">
+          <span>Thoda sa gussa baki hai, itni asani se nahi manungi</span>
+          <span class="icon">&rarr;</span>
+        </button>
+        <button class="opt-btn" onclick="saveAnswer('Muskura rahi hoon', 4)">
+          <span>Ye page dekh kar smile aa gayi par control kar rahi hoon</span>
+          <span class="icon">&rarr;</span>
+        </button>
+        <button class="opt-btn" onclick="saveAnswer('Ready to talk', 4)">
+          <span>I just want to end this silence right now</span>
+          <span class="icon">&rarr;</span>
+        </button>
+      </div>
     </div>
-    <div class="dots">4 / 4</div>
+
+    <!-- Step 4: Question 3 -->
+    <div class="card" id="step4">
+      <div class="badge">Question 03</div>
+      <h2>Sulha ka contract kya hona chahiye?</h2>
+      <p class="subtitle">Penalty Ehtesham pay karega, choice aapki hai.</p>
+      <div class="options-grid">
+        <button class="opt-btn" onclick="saveAnswer('Long drive and favorite food', 5)">
+          <span>Aik long drive aur mera favorite khana</span>
+          <span class="icon">&rarr;</span>
+        </button>
+        <button class="opt-btn" onclick="saveAnswer('Late night call with no arguments', 5)">
+          <span>Aik lambi call jahan sirf achi batien hongi</span>
+          <span class="icon">&rarr;</span>
+        </button>
+        <button class="opt-btn" onclick="saveAnswer('Ehtesham confesses I am always right', 5)">
+          <span>Ye accept karo ke har dafa ghalti tumhari hoti hai</span>
+          <span class="icon">&rarr;</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 5: Final Resolution -->
+    <div class="card" id="step5">
+      <div class="badge">Truce Sealed</div>
+      <h1>Ab Muskura Bhi Dain!</h1>
+      <div class="poetry-box">
+        "Tum jo hans do to sabhi ranj mitaane aayen,<br>
+        Hum to bas tum ko mana lene ke bahaane laayen."
+      </div>
+      <p class="subtitle">N नाराजगी apni jagah, but life is simply better when we are talking. Neechay click karo aur WhatsApp par reply bhejo.</p>
+      <a id="whatsappCta" class="primary-btn" href="#" target="_blank">Maan Gayi, Message Dekho &rarr;</a>
+      <span class="note-tag">Direct WhatsApp pre-filled response</span>
+    </div>
   </div>
 
   <script>
-    let answers = [];
+    const userResponses = [];
 
-    function goTo(step) {
-      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-      document.getElementById('step' + step).classList.add('active');
+    function nextStep(stepNumber) {
+      document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
+      const activeCard = document.getElementById('step' + stepNumber);
+      if (activeCard) activeCard.classList.add('active');
+
+      document.querySelectorAll('.pill').forEach((pill, idx) => {
+        if (idx < stepNumber) {
+          pill.classList.add('active');
+        } else {
+          pill.classList.remove('active');
+        }
+      });
     }
 
-    function selectAns(text, nextStep) {
-      answers.push(text);
-      if (nextStep === 4) {
-        setupWhatsApp();
+    function saveAnswer(selectedText, targetStep) {
+      userResponses.push(selectedText);
+      if (targetStep === 5) {
+        generateWhatsAppLink();
       }
-      goTo(nextStep);
+      nextStep(targetStep);
     }
 
-    function setupWhatsApp() {
-      const msg = encodeURIComponent("Hey Ehtesham! Maine page dekha.\n\nMere answers yeh hain:\n- " + answers.join("\n- ") + "\n\nChalo ab narazgi khatam karein!");
-      // Default share intent (user can pick Ehtesham from chat list directly)
-      document.getElementById('waBtn').href = "https://api.whatsapp.com/send?text=" + msg;
+    function generateWhatsAppLink() {
+      const compiledText = 
+        "Hey Ehtesham! Page check kar liya maine.\n\n" +
+        "Mere responses:\n" +
+        "1. " + (userResponses[0] || "N/A") + "\n" +
+        "2. " + (userResponses[1] || "N/A") + "\n" +
+        "3. " + (userResponses[2] || "N/A") + "\n\n" +
+        "Chalo ab baat khatam karo aur call karo!";
+
+      const encoded = encodeURIComponent(compiledText);
+      document.getElementById('whatsappCta').href = "https://api.whatsapp.com/send?text=" + encoded;
     }
   </script>
 </body>
 </html>
-
-```
-
-* اگر آپ تصویر لگانا چاہتے ہیں تو گٹ ہب میں اسی جگہ `photo.jpg` کے نام سے تصویر اپلوڈ کر دیں، وہ خود بخود نظر آنا شروع ہو جائے گی۔ اگر نہیں بھی کریں گے تو فال بیک کے طور پر خوبصورت ڈیفالٹ تصویر دکھے گی۔
