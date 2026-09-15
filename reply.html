@@ -1,1 +1,238 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>From Ehtesham To Jia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #f43f5e;
+      --accent: #fda4af;
+      --gold-warm: #fbbf24;
+      --bg-dark: #050609;
+      --card-bg: rgba(10, 12, 20, 0.82);
+      --card-border: rgba(251, 191, 36, 0.22);
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 20px 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .bg-image-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=85&w=2000&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center 65%;
+      z-index: 0;
+      pointer-events: none;
+      filter: brightness(0.38) contrast(1.15);
+    }
+
+    .bg-vignette {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(5, 6, 9, 0.3) 0%, rgba(5, 6, 9, 0.88) 75%, #050609 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 520px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(48px);
+      -webkit-backdrop-filter: blur(48px);
+      border: 1px solid var(--card-border);
+      border-radius: 30px;
+      padding: 38px 28px;
+      box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.85), 0 0 35px rgba(251, 191, 36, 0.12);
+      text-align: center;
+    }
+
+    .heart-scene {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 16px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      filter: drop-shadow(0 0 16px rgba(244, 63, 94, 0.8));
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid rgba(251, 191, 36, 0.45);
+      color: #fef08a;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .poetry-box {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      line-height: 1.7;
+      font-style: italic;
+      color: #fff7ed;
+      background: rgba(0, 0, 0, 0.35);
+      border-left: 3px solid var(--gold-warm);
+      padding: 16px 20px;
+      border-radius: 0 18px 18px 0;
+      margin: 18px 0;
+      text-align: left;
+    }
+
+    .message-body {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      text-align: left;
+      margin: 20px 0;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .message-body p {
+      margin-bottom: 12px;
+    }
+    .message-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .call-btn {
+      display: inline-block;
+      width: 100%;
+      background: linear-gradient(135deg, #f43f5e, #be123c);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 16px 24px;
+      border-radius: 16px;
+      text-decoration: none;
+      box-shadow: 0 10px 28px -5px rgba(244, 63, 94, 0.5);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+    .call-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px -4px rgba(244, 63, 94, 0.65);
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bgMusic" loop preload="auto" autoplay>
+    <source src="zara_si_dosti.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="bg-image-layer"></div>
+  <div class="bg-vignette"></div>
+
+  <div class="wrapper">
+    <div class="card">
+      <div class="heart-scene">💍</div>
+      <div class="badge">Ehtesham's Reply</div>
+      <h1>I Heard Every Single Word</h1>
+
+      <div class="poetry-box">
+        "Agar yeh keh do baghair mere nahin guzara to main tumhara,<br>
+        Raha na in mein se koi dunya mein jab tumhara to main tumhara."
+      </div>
+
+      <div class="message-body">
+        <p><strong>Jia meri jaan,</strong></p>
+        <p>Maine tumhara har ek answer bohot dhyan se parha. Agar mere kisi bhi behave ya gusse ne tumhe hurt kiya, to I am truly sorry. Mera irada kabhi bhi tumhe dukh dene ka nahi tha, bas thoda sa waqt aur tumhari reassurance chahiye thi.</p>
+        <p>Tumne Question 11 mein likha ke <em>"Ye Apko pata"</em> hamara agla move kya hona chahiye...</p>
+        <p>To hamara agla move yeh hai ke ab koi khamoshi nahi hogi. Hamara golden rule wahi hai jo tumne chuna: baat seedhi call par clear hogi aur shikayatein gale lag kar khatam hongi.</p>
+      </div>
+
+      <button class="call-btn" onclick="openCall()">I Am Waiting For Your Call &rarr;</button>
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById('bgMusic');
+    let hasPlayed = false;
+
+    function playAudioSafe() {
+      if (!hasPlayed) {
+        audio.play().then(() => {
+          hasPlayed = true;
+        }).catch(() => {
+          const unlock = () => {
+            audio.play().then(() => {
+              hasPlayed = true;
+              window.removeEventListener('touchstart', unlock);
+              window.removeEventListener('click', unlock);
+            }).catch(() => {});
+          };
+          window.addEventListener('touchstart', unlock, { once: true });
+          window.addEventListener('click', unlock, { once: true });
+        });
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', playAudioSafe);
+    window.addEventListener('load', playAudioSafe);
+
+    function openCall() {
+      window.location.href = "tel:+923161007737";
+    }
+  </script>
+</body>
+</html>
