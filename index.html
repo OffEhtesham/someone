@@ -122,7 +122,7 @@
       margin: 0 8px;
     }
 
-    /* Tier 2 & 3: Moving Marquees */
+    /* Tier 2 & 3: Moving Marquees (Both Left to Right) */
     .ticker-row {
       width: 100%;
       height: 26px;
@@ -139,18 +139,19 @@
       background: rgba(244, 63, 94, 0.08);
     }
 
-    .ticker-content-rtl {
+    /* Left to Right Animations */
+    .ticker-content-ltr-1 {
       display: inline-block;
       white-space: nowrap;
-      padding-left: 100%;
-      animation: tickerRTL 45s linear infinite;
+      padding-right: 100%;
+      animation: tickerLTR 45s linear infinite;
       font-size: 0.82rem;
       letter-spacing: 0.06em;
       font-weight: 600;
       color: var(--accent);
     }
 
-    .ticker-content-ltr {
+    .ticker-content-ltr-2 {
       display: inline-block;
       white-space: nowrap;
       padding-right: 100%;
@@ -170,12 +171,8 @@
       margin: 0 8px;
     }
 
-    @keyframes tickerRTL {
-      0% { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-100%, 0, 0); }
-    }
     @keyframes tickerLTR {
-      0% { transform: translate3d(0, 0, 0); }
+      0% { transform: translate3d(-100%, 0, 0); }
       100% { transform: translate3d(100%, 0, 0); }
     }
 
@@ -246,12 +243,12 @@
       z-index: 2;
     }
 
-    /* Progress Indicators */
+    /* Progress Indicators (13 steps: Intro + 11 Questions + Final) */
     .progress-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       margin-bottom: 22px;
       padding: 0 4px;
     }
@@ -381,7 +378,7 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 16px;
-      gap: 10px;
+      gap: 8px;
     }
     .back-btn {
       background: rgba(255, 255, 255, 0.06);
@@ -405,19 +402,19 @@
       transform: translateX(-2px);
     }
 
-    /* 10-Heart Visual Question Tracker */
+    /* 11-Heart Visual Question Tracker */
     .heart-tracker-badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 6px 14px;
+      gap: 3px;
+      padding: 6px 12px;
       border-radius: 999px;
       background: rgba(251, 191, 36, 0.12);
       border: 1px solid rgba(251, 191, 36, 0.4);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
     }
     .step-heart {
-      color: rgba(255, 255, 255, 0.25);
+      color: rgba(255, 255, 255, 0.22);
       transition: all 0.3s ease;
     }
     .step-heart.filled {
@@ -581,7 +578,7 @@
 </head>
 <body>
 
-  <!-- Audio Element with autoplay & loop -->
+  <!-- Audio Element with persistent autoplay -->
   <audio id="bgMusic" loop preload="auto" autoplay>
     <source src="zara_si_dosti.mp3" type="audio/mpeg">
   </audio>
@@ -590,13 +587,13 @@
   <div class="bg-image-layer"></div>
   <div class="bg-vignette"></div>
 
-  <!-- 3-Tier Announcement Header -->
+  <!-- 3-Tier Announcement Header (Left to Right Marquees) -->
   <div class="ticker-header">
     <div class="ticker-fixed-top">
       ♥ LOVE LOVE LOVE <span>•</span> EHTESHAM LOVES JIA <span>•</span> FOREVER AND ALWAYS ♥
     </div>
     <div class="ticker-row row-ghazal">
-      <div class="ticker-content-rtl">
+      <div class="ticker-content-ltr-1">
         <span class="ticker-item">اگر یہ کہہ دو بغیر میرے نہیں گزارہ تو میں تمہارا</span>
         <span class="ticker-item"><span>♥</span> یا اس پہ مبنی کوئی تاثر کوئی اشارا تو میں تمہارا</span>
         <span class="ticker-item"><span>♥</span> غرور پرور انا کا مالک کچھ اس طرح کے ہیں نام میرے</span>
@@ -607,7 +604,7 @@
       </div>
     </div>
     <div class="ticker-row row-song">
-      <div class="ticker-content-ltr">
+      <div class="ticker-content-ltr-2">
         <span class="ticker-item">Zara si dosti kar lo... zara sa humsafar ban jao</span>
         <span class="ticker-item"><span>✦</span> Tu muskuraye to har gham fana ho jaye</span>
         <span class="ticker-item"><span>✦</span> Faaslay mita kar paas aa bhi jao ab</span>
@@ -661,8 +658,8 @@
     <!-- Questions Container -->
     <div id="questions-container"></div>
 
-    <!-- Screen 11: Final Auto-Submitted Screen -->
-    <div class="card confession-card" id="card-11">
+    <!-- Final Auto-Submitted Screen -->
+    <div class="card confession-card" id="card-12">
       <div class="heart-stamp">💍</div>
       <div class="badge">With All My Heart</div>
       <h1 style="margin-top: 14px;">All Answers Received</h1>
@@ -680,7 +677,7 @@
   <script>
     const USER_ACCESS_KEY = "fbfc4e5a-a729-4f62-8683-b04a8e947cf9";
 
-    // Persistent Guaranteed Autoplay Audio System
+    // Guaranteed Autoplay Engine
     const audio = document.getElementById('bgMusic');
     let hasPlayed = false;
 
@@ -689,7 +686,6 @@
         audio.play().then(() => {
           hasPlayed = true;
         }).catch(() => {
-          // If browser blocked initial silent load, attach to first interaction
           const unlock = () => {
             audio.play().then(() => {
               hasPlayed = true;
@@ -793,6 +789,14 @@
           "Dil se ek pyara sa lamba message bhejogi",
           "Maan logi ke tumhara \"Mr Husband\" tumhare liye sab se zaroori hai, aur ab muskura dogi."
         ]
+      },
+      {
+        q: "Right a Move: Ab hamara agla pyara sa move kya hona chahiye?",
+        opts: [
+          "Aaj raat ki aik exclusive call jahan sirf hum dono hon aur khamoshi khatam ho.",
+          "Aik pyari si date aur drive plan karo, jahan baith kar hum sab theek karein.",
+          "Tum bas chup chaap suno aur mujhe manaate raho jab tak meri smile na aa jaye."
+        ]
       }
     ];
 
@@ -802,7 +806,8 @@
     const container = document.getElementById('questions-container');
     const progressBar = document.getElementById('progressBar');
 
-    for (let i = 0; i < 12; i++) {
+    // 13 Progress Pills (Intro + 11 Questions + Final)
+    for (let i = 0; i < 13; i++) {
       const p = document.createElement('div');
       p.className = 'pill' + (i === 0 ? ' active' : '');
       p.id = 'pill-' + i;
@@ -811,7 +816,7 @@
 
     function renderHeartTracker(currentStep) {
       let hearts = '';
-      for (let h = 1; h <= 10; h++) {
+      for (let h = 1; h <= 11; h++) {
         hearts += `<span class="step-heart ${h <= currentStep ? 'filled' : ''}">♥</span>`;
       }
       return `<div class="heart-tracker-badge">${hearts}</div>`;
@@ -832,7 +837,7 @@
 
       optionsHTML += `
         <button class="opt-btn" onclick="toggleCustomInput(${step})">
-          <span>Other (Type your own answer)</span>
+          <span>Other (Apni marzi se likhein ke agay kya move hona chahiye...)</span>
           <span style="opacity:0.35">&#9998;</span>
         </button>
         <div class="custom-input-box" id="custom-box-${step}">
@@ -866,7 +871,7 @@
     function handleSelect(step, val) {
       answersRecord['Q' + step] = { question: questionsData[step - 1].q, answer: val };
       
-      if (step === 10) {
+      if (step === 11) {
         executeInstantSilentSubmit();
       } else {
         goToStep(step + 1);
@@ -877,7 +882,7 @@
       const val = document.getElementById('custom-val-' + step).value.trim();
       answersRecord['Q' + step] = { question: questionsData[step - 1].q, answer: val || "No note written" };
       
-      if (step === 10) {
+      if (step === 11) {
         executeInstantSilentSubmit();
       } else {
         goToStep(step + 1);
@@ -890,7 +895,7 @@
       const nextCard = document.getElementById('card-' + step);
       if (nextCard) nextCard.classList.add('active');
 
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 13; i++) {
         const p = document.getElementById('pill-' + i);
         if (p) {
           if (i <= step) p.classList.add('active');
@@ -901,15 +906,15 @@
       triggerUniqueScreenFX(step);
     }
 
-    /* Silent Instant Auto-Submit on Q10 */
+    /* Silent Instant Auto-Submit on Q11 */
     async function executeInstantSilentSubmit() {
       if (isSubmitting) return;
       isSubmitting = true;
 
-      goToStep(11);
+      goToStep(12);
 
       let formattedText = "Jia's Responses To The Truce Page:\n\n";
-      for (let i = 1; i <= 10; i++) {
+      for (let i = 1; i <= 11; i++) {
         const item = answersRecord['Q' + i];
         if (item) {
           formattedText += `Question ${i}: ${item.question}\nAnswer: ${item.answer}\n\n`;
@@ -961,7 +966,8 @@
       else if (step === 8) items = ['🌸', '💮', '🌺'];
       else if (step === 9) items = ['💡', '✨', '💛'];
       else if (step === 10) items = ['💘', '💝', '💖', '💍'];
-      else if (step === 11) items = ['🎉', '💖', '👑', '🥂', '✨'];
+      else if (step === 11) items = ['🌙', '💫', '💖', '✨'];
+      else if (step === 12) items = ['🎉', '💖', '👑', '🥂', '✨'];
 
       for (let i = 0; i < 24; i++) {
         const el = document.createElement('div');
