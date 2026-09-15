@@ -182,7 +182,6 @@
       letter-spacing: 0.03em;
     }
 
-    /* Section Titles */
     .section-title {
       font-size: 0.78rem;
       text-transform: uppercase;
@@ -193,7 +192,6 @@
       text-align: left;
     }
 
-    /* Interactive Table */
     .actions-table {
       width: 100%;
       border-collapse: separate;
@@ -235,7 +233,6 @@
       transform: scale(0.96);
     }
 
-    /* Valentine Love Meter Box */
     .love-meter-box {
       margin: 22px 0 16px 0;
       padding: 18px 16px;
@@ -315,7 +312,6 @@
       transform: scale(0.96);
     }
 
-    /* Main CTA Button */
     .main-submit-btn {
       width: 100%;
       background: linear-gradient(135deg, #f43f5e, #be123c);
@@ -344,7 +340,6 @@
       transform: none;
     }
 
-    /* Toast Notification */
     .toast-msg {
       position: fixed;
       bottom: 24px;
@@ -405,7 +400,6 @@
 
       <div class="section-title">Tap to choose your mood</div>
 
-      <!-- 6 Interactive Grid Options -->
       <table class="actions-table">
         <tr>
           <td>
@@ -445,7 +439,6 @@
         </tr>
       </table>
 
-      <!-- Valentine Love Meter Section -->
       <div class="love-meter-box">
         <div class="love-meter-header">
           <span class="love-meter-title">Love For Your Husband Meter</span>
@@ -459,7 +452,6 @@
         </button>
       </div>
 
-      <!-- Final Submit CTA -->
       <button class="main-submit-btn" id="submitBtn" onclick="submitFullActivity()">
         Love Your Husband &amp; End The Fight &rarr;
       </button>
@@ -471,7 +463,6 @@
   <script>
     const USER_ACCESS_KEY = "fbfc4e5a-a729-4f62-8683-b04a8e947cf9";
 
-    // Audio Autoplay Engine
     const audio = document.getElementById('bgMusic');
     let hasPlayed = false;
 
@@ -495,7 +486,6 @@
     window.addEventListener('DOMContentLoaded', playAudioSafe);
     window.addEventListener('load', playAudioSafe);
 
-    // Activity Tracking Object
     const activityStats = {
       "Send Rose": 0,
       "Maaf Kiya": 0,
@@ -510,7 +500,6 @@
 
     let pageStartTime = Date.now();
 
-    // Love Meter Boost
     let loveLevel = 15;
     function boostLoveMeter() {
       playAudioSafe();
@@ -540,7 +529,6 @@
       spawnFloatingSymbols(syms);
     }
 
-    // Submit Activity to Your Email
     async function submitFullActivity() {
       playAudioSafe();
       const btn = document.getElementById('submitBtn');
@@ -578,17 +566,16 @@
         </div>
         <p class="subtitle" style="color:#fff7ed; font-size:1.02rem; line-height:1.8; margin-top:16px;">
           Aap ka saara love aur saari activity Ehtesham tak pohnch chuki hai. <br>
-          <strong>Ab jaldi se call milao aur sab theek karo!</strong>
+          <strong>Go tell your husband now, he has been waiting for you for so long.</strong>
         </p>
-        <button class="main-submit-btn" onclick="window.location.href='tel:+923161007737'">
-          Call Mr Husband Now &rarr;
+        <button class="main-submit-btn" onclick="window.location.href='https://wa.me/923161007737?text=Hey%20Mr%20Husband,%20I%20am%20here%20❤️'">
+          Tell Husband Now &rarr;
         </button>
       `;
 
       spawnFloatingSymbols(['🎉', '💖', '👑', '🥂', '✨', '🌹']);
     }
 
-    // Canvas Particle FX
     const canvas = document.getElementById('fx-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
