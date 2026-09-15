@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Jia | Ehtesham</title>
+  <title>For My Jia | Ehtesham</title>
   
   <meta name="description" content="A special personal sanctuary built with love for Jia by Ehtesham.">
   <meta name="theme-color" content="#050609">
@@ -83,7 +83,7 @@
       pointer-events: none;
     }
 
-    /* Dual Tier Announcement Ticker */
+    /* Dual Tier Announcement Ticker with Amir Ameer Ghazal */
     .ticker-header {
       position: fixed;
       top: 0;
@@ -92,7 +92,7 @@
       z-index: 100;
       display: flex;
       flex-direction: column;
-      background: rgba(8, 10, 16, 0.9);
+      background: rgba(8, 10, 16, 0.92);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(251, 191, 36, 0.25);
@@ -100,14 +100,14 @@
     }
     .ticker-row {
       width: 100%;
-      height: 28px;
+      height: 30px;
       overflow: hidden;
       display: flex;
       align-items: center;
       position: relative;
     }
     .ticker-row.row-2 {
-      height: 24px;
+      height: 26px;
       background: rgba(244, 63, 94, 0.08);
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
@@ -115,10 +115,9 @@
       display: inline-block;
       white-space: nowrap;
       padding-left: 100%;
-      animation: tickerLeft 32s linear infinite;
-      font-size: 0.76rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      animation: tickerLeft 45s linear infinite;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
       font-weight: 600;
       color: var(--accent);
     }
@@ -126,16 +125,15 @@
       display: inline-block;
       white-space: nowrap;
       padding-right: 100%;
-      animation: tickerRight 28s linear infinite;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      animation: tickerRight 40s linear infinite;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
       font-weight: 500;
       color: #fde68a;
     }
     .ticker-item {
       display: inline-block;
-      padding: 0 18px;
+      padding: 0 20px;
     }
     .ticker-item span {
       color: var(--gold-warm);
@@ -148,6 +146,49 @@
     @keyframes tickerRight {
       0% { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(100%, 0, 0); }
+    }
+
+    /* Floating Music Control Widget */
+    .music-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 101;
+      background: rgba(14, 16, 26, 0.85);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 999px;
+      padding: 8px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px rgba(251, 191, 36, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .music-widget:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold-warm);
+      box-shadow: 0 12px 35px rgba(251, 191, 36, 0.35);
+    }
+    .music-icon {
+      font-size: 1.1rem;
+      animation: musicRotate 4s linear infinite;
+      display: inline-block;
+    }
+    .music-widget.paused .music-icon {
+      animation-play-state: paused;
+    }
+    .music-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #fde68a;
+      letter-spacing: 0.05em;
+    }
+    @keyframes musicRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     /* Canvases */
@@ -258,10 +299,10 @@
       transform: translateY(0) scale(1);
     }
 
-    /* Circular Photo Frame with Ambient Light Ring */
+    /* Circular Photo Frame with Mehndi Image */
     .photo-scene {
-      width: 115px;
-      height: 115px;
+      width: 130px;
+      height: 130px;
       margin: 0 auto 22px auto;
       position: relative;
       display: flex;
@@ -273,33 +314,39 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(251, 191, 36, 0.45), transparent 70%);
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.5), transparent 70%);
       animation: pulseGlow 2.5s ease-in-out infinite;
     }
     .photo-ring {
       position: absolute;
-      width: 110px;
-      height: 110px;
+      width: 124px;
+      height: 124px;
       border-radius: 50%;
-      border: 1.5px dashed rgba(251, 191, 36, 0.6);
+      border: 2px dashed rgba(251, 191, 36, 0.7);
       animation: rotateRing 14s linear infinite;
     }
     .photo-circle {
-      width: 92px;
-      height: 92px;
+      width: 104px;
+      height: 104px;
       border-radius: 50%;
       overflow: hidden;
       position: relative;
       z-index: 2;
-      border: 2px solid rgba(251, 191, 36, 0.8);
-      box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+      border: 3px solid rgba(251, 191, 36, 0.9);
+      box-shadow: 0 0 25px rgba(251, 191, 36, 0.6), inset 0 0 15px rgba(0,0,0,0.5);
       background-color: #111420;
     }
     .photo-circle img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
       display: block;
+      transform: scale(1.05);
+      transition: transform 0.4s ease;
+    }
+    .photo-circle:hover img {
+      transform: scale(1.12);
     }
 
     @keyframes pulseGlow {
@@ -467,27 +514,40 @@
 </head>
 <body>
 
+  <!-- Background Music Audio Element -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="mat-aazma-re.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Floating Music Play/Pause Button -->
+  <div class="music-widget" id="musicBtn" onclick="toggleMusic()">
+    <span class="music-icon">🎵</span>
+    <span class="music-label" id="musicLabel">Mat Aazma Re (Play)</span>
+  </div>
+
   <!-- Cinematic Background Layer -->
   <div class="bg-image-layer"></div>
   <div class="bg-vignette"></div>
 
-  <!-- Dual Tier Announcement Header -->
+  <!-- Dual Tier Announcement Header with Complete Ghazal -->
   <div class="ticker-header">
     <div class="ticker-row">
       <div class="ticker-content-left">
-        <span class="ticker-item">Ehtesham loves you endlessly</span>
-        <span class="ticker-item"><span>♥</span> In every silence, my heart only whispers Jia</span>
-        <span class="ticker-item"><span>♥</span> Two days without you felt like an eternity</span>
-        <span class="ticker-item"><span>♥</span> Built line by line, just to bring your smile back</span>
-        <span class="ticker-item"><span>♥</span> My today, my tomorrow, and my forever</span>
+        <span class="ticker-item">اگر یہ کہہ دو بغیر میرے نہیں گزارہ تو میں تمہارا</span>
+        <span class="ticker-item"><span>♥</span> یا اس پہ مبنی کوئی تاثر کوئی اشارا تو میں تمہارا</span>
+        <span class="ticker-item"><span>♥</span> غرور پرور انا کا مالک کچھ اس طرح کے ہیں نام میرے</span>
+        <span class="ticker-item"><span>♥</span> مگر قسم سے جو تم نے اک نام بھی پکارا تو میں تمہارا</span>
+        <span class="ticker-item"><span>♥</span> تم اپنی شرطوں پہ کھیل کھیلو میں جیسے چاہوں لگاؤں بازی</span>
+        <span class="ticker-item"><span>♥</span> اگر میں جیتا تو تم ہو میرے اگر میں ہارا تو میں تمہارا</span>
       </div>
     </div>
     <div class="ticker-row row-2">
       <div class="ticker-content-right">
-        <span class="ticker-item">A Quiet Winter Cabin For Two</span>
-        <span class="ticker-item"><span>✦</span> Direct Line Between Two Hearts</span>
-        <span class="ticker-item"><span>✦</span> No Ego • Only Love</span>
-        <span class="ticker-item"><span>✦</span> The Wait Ends Now</span>
+        <span class="ticker-item">تمہارا عاشق تمہارا مخلص تمہارا ساتھی تمہارا اپنا</span>
+        <span class="ticker-item"><span>✦</span> رہا نہ ان میں سے کوئی دنیا میں جب تمہارا تو میں تمہارا</span>
+        <span class="ticker-item"><span>✦</span> تمہارا ہونے کے فیصلے کو میں اپنی قسمت پہ چھوڑتا ہوں</span>
+        <span class="ticker-item"><span>✦</span> اگر مقدر کا کوئی ٹوٹا کبھی ستارا تو میں تمہارا</span>
+        <span class="ticker-item"><span>✦</span> تمام چھوڑو بس ایک کر لو جو استخارہ تو میں تمہارا</span>
       </div>
     </div>
   </div>
@@ -507,7 +567,8 @@
         <div class="photo-glow"></div>
         <div class="photo-ring"></div>
         <div class="photo-circle">
-          <img src="photo.jpg" alt="Jia" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300'">
+          <!-- Place your uploaded mehndi image file in repository as mehndi.jpg -->
+          <img src="mehndi.jpg" alt="Jia" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300'">
         </div>
       </div>
       <div class="badge">ONLY FOR JIA</div>
@@ -518,7 +579,7 @@
       <p class="subtitle">
         Pichle kuch dino mein jo bhi hua, main chahta hoon hum dono bilkul aik page par aa jayein. Tum bas in sawalat ke honestly jawab do, taake hamara bond dobara pehle se bhi zyada pyara ho jaye.
       </p>
-      <button class="primary-btn" onclick="goToStep(1)">Start &rarr;</button>
+      <button class="primary-btn" onclick="startExperience()">Start &rarr;</button>
     </div>
 
     <!-- Questions Container -->
@@ -542,6 +603,35 @@
 
   <script>
     const USER_ACCESS_KEY = "fbfc4e5a-a729-4f62-8683-b04a8e947cf9";
+
+    // Audio Engine Handling
+    const audio = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    const musicLabel = document.getElementById('musicLabel');
+    let isPlaying = false;
+
+    function toggleMusic() {
+      if (isPlaying) {
+        audio.pause();
+        musicBtn.classList.add('paused');
+        musicLabel.innerText = "Mat Aazma Re (Play)";
+        isPlaying = false;
+      } else {
+        audio.play().then(() => {
+          musicBtn.classList.remove('paused');
+          musicLabel.innerText = "Playing: Mat Aazma Re";
+          isPlaying = true;
+        }).catch(() => {});
+      }
+    }
+
+    function startExperience() {
+      // Auto-start music on initial user interaction (avoids browser autoplay blocks)
+      if (!isPlaying) {
+        toggleMusic();
+      }
+      goToStep(1);
+    }
 
     const questionsData = [
       {
