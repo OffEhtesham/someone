@@ -23,7 +23,7 @@
       --gold-warm: #fbbf24;
       --gold-glow: rgba(251, 191, 36, 0.25);
       --bg-dark: #050609;
-      --card-bg: rgba(10, 12, 20, 0.72);
+      --card-bg: rgba(10, 12, 20, 0.76);
       --card-border: rgba(251, 191, 36, 0.2);
       --text-main: #f8fafc;
       --text-muted: #cbd5e1;
@@ -45,7 +45,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 95px 18px 40px 18px;
+      padding: 125px 18px 45px 18px;
       position: relative;
       overflow-x: hidden;
       cursor: default;
@@ -64,7 +64,7 @@
       z-index: 0;
       pointer-events: none;
       animation: slowZoom 24s ease-in-out infinite alternate;
-      filter: brightness(0.42) contrast(1.15) saturate(1.1);
+      filter: brightness(0.4) contrast(1.15) saturate(1.1);
     }
 
     @keyframes slowZoom {
@@ -78,12 +78,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, rgba(5, 6, 9, 0.35) 0%, rgba(5, 6, 9, 0.82) 75%, #050609 100%);
+      background: radial-gradient(circle at center, rgba(5, 6, 9, 0.35) 0%, rgba(5, 6, 9, 0.85) 75%, #050609 100%);
       z-index: 0;
       pointer-events: none;
     }
 
-    /* Dual Tier Announcement Ticker with Amir Ameer Ghazal */
+    /* 3-Tier Announcement Header */
     .ticker-header {
       position: fixed;
       top: 0;
@@ -92,45 +92,77 @@
       z-index: 100;
       display: flex;
       flex-direction: column;
-      background: rgba(8, 10, 16, 0.92);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(251, 191, 36, 0.25);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      background: rgba(8, 10, 16, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(251, 191, 36, 0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
     }
+    
+    /* Tier 1: Fixed Love Banner */
+    .ticker-fixed-top {
+      width: 100%;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(90deg, rgba(244, 63, 94, 0.25), rgba(251, 191, 36, 0.2), rgba(244, 63, 94, 0.25));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.76rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(244, 63, 94, 0.6);
+      padding: 0 12px;
+      text-align: center;
+    }
+    .ticker-fixed-top span {
+      color: var(--gold-warm);
+      margin: 0 8px;
+    }
+
+    /* Tier 2 & 3: Moving Marquees */
     .ticker-row {
       width: 100%;
-      height: 30px;
+      height: 26px;
       overflow: hidden;
       display: flex;
       align-items: center;
       position: relative;
     }
-    .ticker-row.row-2 {
-      height: 26px;
-      background: rgba(244, 63, 94, 0.08);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    .ticker-row.row-ghazal {
+      background: rgba(14, 16, 26, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
-    .ticker-content-left {
+    .ticker-row.row-song {
+      background: rgba(244, 63, 94, 0.08);
+    }
+
+    /* Right to Left Animation for Ghazal */
+    .ticker-content-rtl {
       display: inline-block;
       white-space: nowrap;
       padding-left: 100%;
-      animation: tickerLeft 45s linear infinite;
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
+      animation: tickerRTL 45s linear infinite;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
       font-weight: 600;
       color: var(--accent);
     }
-    .ticker-content-right {
+
+    /* Left to Right / Subtle Flow for Song */
+    .ticker-content-ltr {
       display: inline-block;
       white-space: nowrap;
       padding-right: 100%;
-      animation: tickerRight 40s linear infinite;
+      animation: tickerLTR 35s linear infinite;
       font-size: 0.74rem;
       letter-spacing: 0.12em;
-      font-weight: 500;
+      font-weight: 600;
       color: #fde68a;
     }
+
     .ticker-item {
       display: inline-block;
       padding: 0 20px;
@@ -139,11 +171,12 @@
       color: var(--gold-warm);
       margin: 0 8px;
     }
-    @keyframes tickerLeft {
+
+    @keyframes tickerRTL {
       0% { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(-100%, 0, 0); }
     }
-    @keyframes tickerRight {
+    @keyframes tickerLTR {
       0% { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(100%, 0, 0); }
     }
@@ -154,7 +187,7 @@
       bottom: 20px;
       right: 20px;
       z-index: 101;
-      background: rgba(14, 16, 26, 0.85);
+      background: rgba(14, 16, 26, 0.88);
       border: 1px solid rgba(251, 191, 36, 0.4);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -286,7 +319,7 @@
       -webkit-backdrop-filter: blur(48px);
       border: 1px solid var(--card-border);
       border-radius: 30px;
-      padding: 40px 30px;
+      padding: 38px 28px;
       box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.85), 0 0 35px rgba(251, 191, 36, 0.12);
       display: none;
       opacity: 0;
@@ -358,6 +391,35 @@
       100% { transform: rotate(360deg); }
     }
 
+    /* Top Card Navigation Bar */
+    .card-top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .back-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateX(-2px);
+    }
+
     .badge {
       display: inline-block;
       font-size: 0.74rem;
@@ -369,11 +431,10 @@
       border: 1px solid rgba(251, 191, 36, 0.45);
       color: #fef08a;
       font-weight: 600;
-      margin-bottom: 18px;
     }
 
     h1, h2 {
-      font-size: 1.62rem;
+      font-size: 1.6rem;
       font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.35;
@@ -514,40 +575,49 @@
 </head>
 <body>
 
-  <!-- Background Music Audio Element -->
+  <!-- Audio Element (Using your uploaded zara_si_dosti.mp3) -->
   <audio id="bgMusic" loop preload="auto">
-    <source src="mat-aazma-re.mp3" type="audio/mpeg">
+    <source src="zara_si_dosti.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Floating Music Play/Pause Button -->
   <div class="music-widget" id="musicBtn" onclick="toggleMusic()">
     <span class="music-icon">🎵</span>
-    <span class="music-label" id="musicLabel">Mat Aazma Re (Play)</span>
+    <span class="music-label" id="musicLabel">Zara Si Dosti (Play)</span>
   </div>
 
   <!-- Cinematic Background Layer -->
   <div class="bg-image-layer"></div>
   <div class="bg-vignette"></div>
 
-  <!-- Dual Tier Announcement Header with Complete Ghazal -->
+  <!-- 3-Tier Announcement Header -->
   <div class="ticker-header">
-    <div class="ticker-row">
-      <div class="ticker-content-left">
+    <!-- Tier 1: Fixed Love Banner -->
+    <div class="ticker-fixed-top">
+      ♥ LOVE LOVE LOVE <span>•</span> EHTESHAM LOVES JIA <span>•</span> FOREVER AND ALWAYS ♥
+    </div>
+
+    <!-- Tier 2: Moving Ghazal (Right to Left) -->
+    <div class="ticker-row row-ghazal">
+      <div class="ticker-content-rtl">
         <span class="ticker-item">اگر یہ کہہ دو بغیر میرے نہیں گزارہ تو میں تمہارا</span>
         <span class="ticker-item"><span>♥</span> یا اس پہ مبنی کوئی تاثر کوئی اشارا تو میں تمہارا</span>
         <span class="ticker-item"><span>♥</span> غرور پرور انا کا مالک کچھ اس طرح کے ہیں نام میرے</span>
         <span class="ticker-item"><span>♥</span> مگر قسم سے جو تم نے اک نام بھی پکارا تو میں تمہارا</span>
         <span class="ticker-item"><span>♥</span> تم اپنی شرطوں پہ کھیل کھیلو میں جیسے چاہوں لگاؤں بازی</span>
         <span class="ticker-item"><span>♥</span> اگر میں جیتا تو تم ہو میرے اگر میں ہارا تو میں تمہارا</span>
+        <span class="ticker-item"><span>♥</span> تمام چھوڑو بس ایک کر لو جو استخارہ تو میں تمہارا</span>
       </div>
     </div>
-    <div class="ticker-row row-2">
-      <div class="ticker-content-right">
-        <span class="ticker-item">تمہارا عاشق تمہارا مخلص تمہارا ساتھی تمہارا اپنا</span>
-        <span class="ticker-item"><span>✦</span> رہا نہ ان میں سے کوئی دنیا میں جب تمہارا تو میں تمہارا</span>
-        <span class="ticker-item"><span>✦</span> تمہارا ہونے کے فیصلے کو میں اپنی قسمت پہ چھوڑتا ہوں</span>
-        <span class="ticker-item"><span>✦</span> اگر مقدر کا کوئی ٹوٹا کبھی ستارا تو میں تمہارا</span>
-        <span class="ticker-item"><span>✦</span> تمام چھوڑو بس ایک کر لو جو استخارہ تو میں تمہارا</span>
+
+    <!-- Tier 3: Moving Song Lyrics (Zara Si Dosti Kar Lo) -->
+    <div class="ticker-row row-song">
+      <div class="ticker-content-ltr">
+        <span class="ticker-item">Zara si dosti kar lo... zara sa humsafar ban jao</span>
+        <span class="ticker-item"><span>✦</span> Tu muskuraye to har gham fana ho jaye</span>
+        <span class="ticker-item"><span>✦</span> Faaslay mita kar paas aa bhi jao ab</span>
+        <span class="ticker-item"><span>✦</span> Meri har subah, har shaam sirf tum se hai</span>
+        <span class="ticker-item"><span>✦</span> Zara si dosti kar lo... mera sukoon ban jao</span>
       </div>
     </div>
   </div>
@@ -567,12 +637,13 @@
         <div class="photo-glow"></div>
         <div class="photo-ring"></div>
         <div class="photo-circle">
-          <!-- Place your uploaded mehndi image file in repository as mehndi.jpg -->
           <img src="mehndi.jpg" alt="Jia" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300'">
         </div>
       </div>
-      <div class="badge">ONLY FOR JIA</div>
-      <h1>Jia Meri Jaan</h1>
+      <div style="text-align: center; margin-bottom: 18px;">
+        <div class="badge">ONLY FOR JIA</div>
+      </div>
+      <h1 style="text-align: center;">Jia Meri Jaan</h1>
       <div class="poetry-box">
         "Kaise bataun main tumhe mere liye tum kaun ho..."
       </div>
@@ -589,7 +660,7 @@
     <div class="card confession-card" id="card-11">
       <div class="heart-stamp">💍</div>
       <div class="badge">With All My Heart</div>
-      <h1>All Answers Received</h1>
+      <h1 style="margin-top: 14px;">All Answers Received</h1>
       <div class="poetry-box">
         "Tum jo hans do to sabhi ranj mitaane aayen,<br>
         Hum to bas tum ko mana lene ke bahaane laayen."
@@ -614,19 +685,18 @@
       if (isPlaying) {
         audio.pause();
         musicBtn.classList.add('paused');
-        musicLabel.innerText = "Mat Aazma Re (Play)";
+        musicLabel.innerText = "Zara Si Dosti (Play)";
         isPlaying = false;
       } else {
         audio.play().then(() => {
           musicBtn.classList.remove('paused');
-          musicLabel.innerText = "Playing: Mat Aazma Re";
+          musicLabel.innerText = "Playing: Zara Si Dosti";
           isPlaying = true;
         }).catch(() => {});
       }
     }
 
     function startExperience() {
-      // Auto-start music on initial user interaction (avoids browser autoplay blocks)
       if (!isPlaying) {
         toggleMusic();
       }
@@ -754,7 +824,12 @@
       `;
 
       card.innerHTML = `
-        <div class="badge">Question 0${step < 10 ? '0' + step : step} / 10</div>
+        <div class="card-top-nav">
+          <button class="back-btn" onclick="goToStep(${step - 1})">
+            <span>&larr;</span> Back
+          </button>
+          <div class="badge">Question 0${step < 10 ? '0' + step : step} / 10</div>
+        </div>
         <h2>${item.q}</h2>
         <p class="subtitle">Choose an option or type your own below.</p>
         <div class="options-grid">${optionsHTML}</div>
@@ -771,7 +846,6 @@
     }
 
     function handleSelect(step, val) {
-      if (answersRecord['Q' + step]) return;
       answersRecord['Q' + step] = { question: questionsData[step - 1].q, answer: val };
       
       if (step === 10) {
@@ -782,7 +856,6 @@
     }
 
     function handleCustomSave(step) {
-      if (answersRecord['Q' + step]) return;
       const val = document.getElementById('custom-val-' + step).value.trim();
       answersRecord['Q' + step] = { question: questionsData[step - 1].q, answer: val || "No note written" };
       
