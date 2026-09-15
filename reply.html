@@ -12,10 +12,11 @@
   <style>
     :root {
       --primary: #f43f5e;
+      --primary-dark: #be123c;
       --accent: #fda4af;
       --gold-warm: #fbbf24;
       --bg-dark: #050609;
-      --card-bg: rgba(10, 12, 20, 0.84);
+      --card-bg: rgba(10, 12, 20, 0.86);
       --card-border: rgba(251, 191, 36, 0.24);
       --text-main: #f8fafc;
       --text-muted: #cbd5e1;
@@ -37,7 +38,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 60px 18px 45px 18px;
+      padding: 60px 18px 55px 18px;
       position: relative;
       overflow-x: hidden;
     }
@@ -67,8 +68,7 @@
       pointer-events: none;
     }
 
-    /* Ambient Rose FX Canvas */
-    #rose-canvas {
+    #fx-canvas {
       position: fixed;
       top: 0;
       left: 0;
@@ -91,15 +91,15 @@
       -webkit-backdrop-filter: blur(48px);
       border: 1px solid var(--card-border);
       border-radius: 30px;
-      padding: 38px 26px;
+      padding: 36px 24px;
       box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.85), 0 0 35px rgba(251, 191, 36, 0.12);
       text-align: center;
     }
 
     .heart-scene {
-      width: 90px;
-      height: 90px;
-      margin: 0 auto 16px auto;
+      width: 85px;
+      height: 85px;
+      margin: 0 auto 14px auto;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -110,7 +110,7 @@
 
     @keyframes gentleBeat {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+      50% { transform: scale(1.12); }
     }
 
     .badge {
@@ -168,13 +168,12 @@
       margin-bottom: 0;
     }
 
-    /* Romantic Handwritten Graffiti Note */
     .graffiti-note {
       font-family: 'Permanent Marker', cursive;
       color: #fda4af;
       font-size: 1.15rem;
       text-align: center;
-      margin: 22px 0 16px 0;
+      margin: 20px 0 16px 0;
       padding: 12px;
       background: rgba(244, 63, 94, 0.08);
       border: 1px dashed rgba(244, 63, 94, 0.4);
@@ -183,9 +182,9 @@
       letter-spacing: 0.03em;
     }
 
-    /* Actions Table Grid */
-    .actions-section-title {
-      font-size: 0.8rem;
+    /* Section Titles */
+    .section-title {
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       color: var(--gold-warm);
@@ -194,11 +193,12 @@
       text-align: left;
     }
 
+    /* Interactive Table */
     .actions-table {
       width: 100%;
       border-collapse: separate;
       border-spacing: 8px;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .actions-table td {
@@ -235,27 +235,113 @@
       transform: scale(0.96);
     }
 
-    /* Main Call Button */
-    .call-btn {
-      display: inline-block;
+    /* Valentine Love Meter Box */
+    .love-meter-box {
+      margin: 22px 0 16px 0;
+      padding: 18px 16px;
+      background: rgba(244, 63, 94, 0.07);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      border-radius: 20px;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .love-meter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .love-meter-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffe4e6;
+      letter-spacing: 0.05em;
+    }
+
+    .love-meter-percent {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(244, 63, 94, 0.6);
+    }
+
+    .meter-track {
+      width: 100%;
+      height: 18px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 15%;
+      background: linear-gradient(90deg, #fb7185, #f43f5e, #e11d48);
+      border-radius: 999px;
+      box-shadow: 0 0 16px rgba(244, 63, 94, 0.8);
+      transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .pulse-btn {
+      width: 100%;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(190, 18, 60, 0.4));
+      border: 1.5px solid rgba(244, 63, 94, 0.6);
+      border-radius: 14px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
+    }
+
+    .pulse-btn:hover {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.5), rgba(190, 18, 60, 0.6));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(244, 63, 94, 0.5);
+    }
+
+    .pulse-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* Main CTA Button */
+    .main-submit-btn {
       width: 100%;
       background: linear-gradient(135deg, #f43f5e, #be123c);
       color: #fff;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 1rem;
       padding: 16px 24px;
       border-radius: 16px;
-      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
       box-shadow: 0 10px 28px -5px rgba(244, 63, 94, 0.5);
       transition: all 0.25s ease;
-      cursor: pointer;
-      border: none;
-      font-family: inherit;
-      margin-top: 4px;
+      margin-top: 10px;
     }
-    .call-btn:hover {
+
+    .main-submit-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 34px -4px rgba(244, 63, 94, 0.65);
+      box-shadow: 0 14px 34px -4px rgba(244, 63, 94, 0.7);
+      filter: brightness(1.08);
+    }
+
+    .main-submit-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
     }
 
     /* Toast Notification */
@@ -278,6 +364,7 @@
       white-space: nowrap;
       pointer-events: none;
     }
+
     .toast-msg.show {
       transform: translateX(-50%) translateY(0);
       opacity: 1;
@@ -290,7 +377,7 @@
     <source src="zara_si_dosti.mp3" type="audio/mpeg">
   </audio>
 
-  <canvas id="rose-canvas"></canvas>
+  <canvas id="fx-canvas"></canvas>
   <div class="bg-image-layer"></div>
   <div class="bg-vignette"></div>
 
@@ -316,55 +403,75 @@
         "Okay I am sorry... ab bas muskura do na please! 🌹"
       </div>
 
-      <div class="actions-section-title">Tap to choose your mood</div>
+      <div class="section-title">Tap to choose your mood</div>
 
-      <!-- 6 Interactive Buttons in Clean Table Grid -->
+      <!-- 6 Interactive Grid Options -->
       <table class="actions-table">
         <tr>
           <td>
-            <button class="interactive-btn" onclick="triggerMagic('rose', 'Ek hazar phool sirf tumhare liye 🌹')">
+            <button class="interactive-btn" onclick="recordAction('Send Rose', 'rose', 'Ek hazar phool sirf tumhare liye 🌹')">
               <span>🌹</span> Send Rose
             </button>
           </td>
           <td>
-            <button class="interactive-btn" onclick="triggerMagic('forgive', 'Dil se maaf kar diya na? 🤍')">
+            <button class="interactive-btn" onclick="recordAction('Maaf Kiya', 'forgive', 'Dil se maaf kar diya na? 🤍')">
               <span>🤍</span> Maaf Kiya
             </button>
           </td>
         </tr>
         <tr>
           <td>
-            <button class="interactive-btn" onclick="triggerMagic('icecream', 'Ice cream date lock ho gayi! 🍦')">
+            <button class="interactive-btn" onclick="recordAction('Ice Cream Date', 'icecream', 'Ice cream date lock ho gayi! 🍦')">
               <span>🍦</span> Ice Cream Date
             </button>
           </td>
           <td>
-            <button class="interactive-btn" onclick="triggerMagic('hug', 'Tight virtual hug for Jia! 🫂')">
+            <button class="interactive-btn" onclick="recordAction('Big Hug', 'hug', 'Tight virtual hug for Jia! 🫂')">
               <span>🫂</span> Big Hug
             </button>
           </td>
         </tr>
         <tr>
           <td>
-            <button class="interactive-btn" onclick="triggerMagic('smile', 'Yeh haseen muskurahat hamesha qayam rahe ✨')">
+            <button class="interactive-btn" onclick="recordAction('Smile Back', 'smile', 'Yeh haseen muskurahat hamesha qayam rahe ✨')">
               <span>✨</span> Smile Back
             </button>
           </td>
           <td>
-            <button class="interactive-btn" onclick="triggerMagic('drive', 'Late night quiet drive ready! 🚗')">
+            <button class="interactive-btn" onclick="recordAction('Late Drive', 'drive', 'Late night quiet drive ready! 🚗')">
               <span>🚗</span> Late Drive
             </button>
           </td>
         </tr>
       </table>
 
-      <button class="call-btn" onclick="openCall()">I Am Waiting For Your Call &rarr;</button>
+      <!-- Valentine Love Meter Section -->
+      <div class="love-meter-box">
+        <div class="love-meter-header">
+          <span class="love-meter-title">Love For Your Husband Meter</span>
+          <span class="love-meter-percent" id="meterPercent">15%</span>
+        </div>
+        <div class="meter-track">
+          <div class="meter-fill" id="meterFill"></div>
+        </div>
+        <button class="pulse-btn" onclick="boostLoveMeter()">
+          <span>💖</span> Tap to Send Love (Boost Meter)
+        </button>
+      </div>
+
+      <!-- Final Submit CTA -->
+      <button class="main-submit-btn" id="submitBtn" onclick="submitFullActivity()">
+        Love Your Husband &amp; End The Fight &rarr;
+      </button>
     </div>
   </div>
 
   <div class="toast-msg" id="toastMsg">Notification</div>
 
   <script>
+    const USER_ACCESS_KEY = "fbfc4e5a-a729-4f62-8683-b04a8e947cf9";
+
+    // Audio Autoplay Engine
     const audio = document.getElementById('bgMusic');
     let hasPlayed = false;
 
@@ -385,16 +492,104 @@
         });
       }
     }
-
     window.addEventListener('DOMContentLoaded', playAudioSafe);
     window.addEventListener('load', playAudioSafe);
 
-    function openCall() {
-      window.location.href = "tel:+923161007737";
+    // Activity Tracking Object
+    const activityStats = {
+      "Send Rose": 0,
+      "Maaf Kiya": 0,
+      "Ice Cream Date": 0,
+      "Big Hug": 0,
+      "Smile Back": 0,
+      "Late Drive": 0,
+      "Love Meter Taps": 0,
+      "Final Love Percentage": "15%",
+      "Time Spent Seconds": 0
+    };
+
+    let pageStartTime = Date.now();
+
+    // Love Meter Boost
+    let loveLevel = 15;
+    function boostLoveMeter() {
+      playAudioSafe();
+      activityStats["Love Meter Taps"]++;
+      
+      loveLevel = Math.min(100, loveLevel + 7);
+      document.getElementById('meterFill').style.width = loveLevel + '%';
+      document.getElementById('meterPercent').innerText = loveLevel + '%';
+      activityStats["Final Love Percentage"] = loveLevel + '%';
+
+      spawnFloatingSymbols(['💖', '💕', '💗', '❤️', '💍']);
+      showToast("Love bar increased to " + loveLevel + "%! Keep tapping 💖");
     }
 
-    /* Dynamic Canvas FX for Rose Petals & Magic Particles */
-    const canvas = document.getElementById('rose-canvas');
+    function recordAction(name, fxType, message) {
+      playAudioSafe();
+      activityStats[name]++;
+      showToast(message);
+
+      let syms = ['🌹', '🥀'];
+      if (fxType === 'forgive') syms = ['🤍', '✨', '🕊️'];
+      if (fxType === 'icecream') syms = ['🍦', '🍨', '💖'];
+      if (fxType === 'hug') syms = ['🫂', '💕', '💗'];
+      if (fxType === 'smile') syms = ['✨', '🌟', '😊'];
+      if (fxType === 'drive') syms = ['🚗', '🌙', '🌌'];
+
+      spawnFloatingSymbols(syms);
+    }
+
+    // Submit Activity to Your Email
+    async function submitFullActivity() {
+      playAudioSafe();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerText = "Sending your love to Ehtesham...";
+
+      activityStats["Time Spent Seconds"] = Math.round((Date.now() - pageStartTime) / 1000);
+
+      let summaryText = "Jia's Activity Report on the Reply Page:\n\n";
+      for (const [key, value] of Object.entries(activityStats)) {
+        summaryText += `${key}: ${value}\n`;
+      }
+      summaryText += "\nStatus: Jia accepted the peace offering and tapped 'Love Your Husband'!";
+
+      try {
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            access_key: USER_ACCESS_KEY,
+            subject: "Jia's Love Bar & Activity Report!",
+            from_name: "Jia",
+            message: summaryText
+          })
+        });
+      } catch (err) {}
+
+      document.querySelector('.card').innerHTML = `
+        <div class="heart-scene">💖</div>
+        <div class="badge">Fight Officially Finished</div>
+        <h1 style="margin-top: 10px;">Love Delivered to Ehtesham!</h1>
+        <div class="poetry-box">
+          "Hum to bas tum ko mana lene ke bahaane laayen...<br>
+          Shukriya ke tum ne muskura diya."
+        </div>
+        <p class="subtitle" style="color:#fff7ed; font-size:1.02rem; line-height:1.8; margin-top:16px;">
+          Aap ka saara love aur saari activity Ehtesham tak pohnch chuki hai. <br>
+          <strong>Ab jaldi se call milao aur sab theek karo!</strong>
+        </p>
+        <button class="main-submit-btn" onclick="window.location.href='tel:+923161007737'">
+          Call Mr Husband Now &rarr;
+        </button>
+      `;
+
+      spawnFloatingSymbols(['🎉', '💖', '👑', '🥂', '✨', '🌹']);
+    }
+
+    // Canvas Particle FX
+    const canvas = document.getElementById('fx-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
 
@@ -406,12 +601,12 @@
     resizeCanvas();
 
     class Particle {
-      constructor(char, x, y) {
+      constructor(char) {
         this.char = char;
-        this.x = x || Math.random() * canvas.width;
-        this.y = y || canvas.height + 20;
+        this.x = Math.random() * (canvas.width * 0.8) + (canvas.width * 0.1);
+        this.y = canvas.height + 20;
         this.vx = (Math.random() - 0.5) * 5;
-        this.vy = -(Math.random() * 6 + 4);
+        this.vy = -(Math.random() * 6 + 5);
         this.alpha = 1;
         this.size = Math.random() * 16 + 18;
         this.rotation = Math.random() * 360;
@@ -420,7 +615,7 @@
       update() {
         this.x += this.vx;
         this.y += this.vy;
-        this.vy += 0.12; // gentle gravity
+        this.vy += 0.1;
         this.rotation += this.rotSpeed;
         this.alpha -= 0.012;
       }
@@ -437,14 +632,19 @@
       }
     }
 
+    function spawnFloatingSymbols(list) {
+      for (let i = 0; i < 26; i++) {
+        const symbol = list[Math.floor(Math.random() * list.length)];
+        particles.push(new Particle(symbol));
+      }
+    }
+
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (let i = particles.length - 1; i >= 0; i--) {
         particles[i].update();
         particles[i].draw();
-        if (particles[i].alpha <= 0) {
-          particles.splice(i, 1);
-        }
+        if (particles[i].alpha <= 0) particles.splice(i, 1);
       }
       requestAnimationFrame(animateParticles);
     }
@@ -456,25 +656,7 @@
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
-      }, 2600);
-    }
-
-    function triggerMagic(type, message) {
-      showToast(message);
-      
-      let symbols = ['🌹', '🥀', '🍃'];
-      if (type === 'forgive') symbols = ['🤍', '✨', '🕊️'];
-      if (type === 'icecream') symbols = ['🍦', '🍨', '🍧', '💖'];
-      if (type === 'hug') symbols = ['🫂', '💕', '💗'];
-      if (type === 'smile') symbols = ['✨', '🌟', '😊', '💛'];
-      if (type === 'drive') symbols = ['🚗', '🌙', '🌌', '✨'];
-
-      for (let i = 0; i < 28; i++) {
-        const char = symbols[Math.floor(Math.random() * symbols.length)];
-        const startX = window.innerWidth * 0.5 + (Math.random() - 0.5) * 200;
-        const startY = window.innerHeight * 0.7;
-        particles.push(new Particle(char, startX, startY));
-      }
+      }, 2400);
     }
   </script>
 </body>
