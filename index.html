@@ -13,7 +13,7 @@
       --primary-hover: #e11d48;
       --accent: #fb7185;
       --bg-dark: #07080d;
-      --card-bg: rgba(18, 20, 29, 0.65);
+      --card-bg: rgba(18, 20, 29, 0.72);
       --card-border: rgba(255, 255, 255, 0.12);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
@@ -32,11 +32,53 @@
       background-color: var(--bg-dark);
       color: var(--text-main);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 30px 20px;
+      padding: 60px 20px 30px 20px;
       position: relative;
       overflow-x: hidden;
+    }
+
+    /* Top Moving Announcement Bar */
+    .ticker-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 38px;
+      background: rgba(15, 17, 26, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(244, 63, 94, 0.25);
+      z-index: 100;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .ticker-move {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: ticker 25s linear infinite;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .ticker-item {
+      display: inline-block;
+      padding: 0 24px;
+    }
+    .ticker-item span {
+      color: #fff;
+      opacity: 0.35;
+      margin: 0 10px;
+    }
+    @keyframes ticker {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-100%, 0, 0); }
     }
 
     /* Ambient Side Particles Canvas */
@@ -50,14 +92,15 @@
       z-index: 0;
     }
 
-    /* Left and Right Glow Spheres */
+    /* Glowing Side Orbs */
     .orb {
       position: fixed;
       border-radius: 50%;
       filter: blur(120px);
       z-index: 0;
       pointer-events: none;
-      opacity: 0.5;
+      opacity: 0.45;
+      transition: all 0.8s ease;
     }
     .orb-left {
       width: 420px;
@@ -83,6 +126,41 @@
     @keyframes pulseRight {
       0% { transform: translateY(0) scale(1); }
       100% { transform: translateY(-70px) scale(1.12); }
+    }
+
+    /* Floating Screen Animations (Hearts / Stars) */
+    .floating-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .floating-el {
+      position: absolute;
+      bottom: -40px;
+      font-size: 1.4rem;
+      animation: floatUp 5s linear infinite;
+      opacity: 0;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.6) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.75;
+      }
+      80% {
+        opacity: 0.75;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
     }
 
     .wrapper {
@@ -253,7 +331,7 @@
       box-shadow: 0 0 10px rgba(244, 63, 94, 0.3);
     }
 
-    /* Buttons */
+    /* Primary Button */
     .primary-btn {
       width: 100%;
       background: linear-gradient(135deg, #f43f5e, #be123c);
@@ -281,36 +359,47 @@
 </head>
 <body>
 
-  <!-- Dynamic Left and Right Ambient Graphics -->
+  <!-- Moving Top Announcement Banner -->
+  <div class="ticker-wrap">
+    <div class="ticker-move">
+      <span class="ticker-item">TRUST ME • EHTESHAM THE CEO</span>
+      <span class="ticker-item"><span>✦</span> OFFICIAL TRUCE PROTOCOL</span>
+      <span class="ticker-item"><span>✦</span> JIA & EHTESHAM ONLY</span>
+      <span class="ticker-item"><span>✦</span> NO MORE DISTANCE</span>
+      <span class="ticker-item"><span>✦</span> PRIORITY OVER EVERYTHING</span>
+    </div>
+  </div>
+
+  <!-- Background Canvas & Dynamic Layers -->
   <canvas id="particles-canvas"></canvas>
-  <div class="orb orb-left"></div>
-  <div class="orb orb-right"></div>
+  <div class="floating-container" id="floatingLayer"></div>
+  <div class="orb orb-left" id="orbLeft"></div>
+  <div class="orb orb-right" id="orbRight"></div>
 
   <div class="wrapper">
-    <!-- Progress Indicator -->
     <div class="progress-bar" id="progressBar"></div>
 
-    <!-- Screen 1: Intro -->
+    <!-- Intro Card -->
     <div class="card active" id="card-0">
       <div class="avatar-wrapper">
         <div class="avatar-ring">
           <img class="avatar-img" src="photo.jpg" alt="Profile" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300'">
         </div>
       </div>
-      <div class="badge">A Serious Truce</div>
+      <div class="badge">A Quiet Truce</div>
       <h1>Two Days Is Far Too Long</h1>
       <div class="poetry-box">
         "Na janay kis liye hum rooth baithay aik doojay se,<br>
         Magar ab shaam ka sona nahi achha laga hum ko."
       </div>
-      <p class="subtitle">Khamoshi khatam karni hai. Agay 10 chotay sawalat hain, jo feel ho raha hai honestly select karo ya khud likh do.</p>
+      <p class="subtitle">Khamoshi bohot lambi ho gayi hai. Aage 10 sawalat hain, jo feel ho raha hai honestly select karo ya khud likh do.</p>
       <button class="primary-btn" onclick="goToStep(1)">Start &rarr;</button>
     </div>
 
-    <!-- Question cards injected by JavaScript -->
+    <!-- Questions Container -->
     <div id="questions-container"></div>
 
-    <!-- Final Screen -->
+    <!-- Final Submission Card -->
     <div class="card" id="card-11">
       <div class="badge">Final Step</div>
       <h1>Ready To Submit?</h1>
@@ -326,44 +415,94 @@
   <script>
     const questionsData = [
       {
-        q: "In 2 dino mein sab se zyada miss kis ne kiya?",
-        opts: ["Obviously maine, bas bataya nahi", "Ehtesham ne, uski neendain urri huwi hain", "Dono ne equally, bas faltu ego beech mein thi"]
+        q: "In do dino ke communication gap par honestly socho, tumhe kya lagta hai?",
+        anim: "sparkles",
+        opts: [
+          "Main bas thodi si over expectation kar baitha tha.",
+          "Tum busy zaroor theen, par thoda sa priorities balance out hone se reh gayi theen.",
+          "Dono ke timings match nahi huwe, lekin dil dono ka dukha tha."
+        ]
       },
       {
-        q: "Gussay ka main reason kya tha?",
-        opts: ["Meri baat sahi se suni nahi gayi", "Timing bohat ghalat thi", "Faltu ka misunderstanding tha jo barh gaya"]
+        q: "Jab maine kaha tha \"Shayad over expectation kills\", us waqt tumhe kya lagta hai mere dil mein kya tha?",
+        anim: "stars",
+        opts: [
+          "Koi gussa ya ego nahi, bas yeh dar ke shayad meri value aur waqt utna count nahi hota.",
+          "Main bas chahta tha ke tum meri taraf thoda aur dhyan do.",
+          "Mujhe laga tha ke tum bina bataye achanak door hone lagi ho."
+        ]
       },
       {
-        q: "Current mood kaisa chal raha hai?",
-        opts: ["Abhi bhi halka sa gussa baki hai", "Smile aa gayi hai par control kar rahi hoon", "Bas ab khatam karo yeh doori"]
+        q: "Main apne pure din ki thakan, kaam aur routine ke baad sab se pehle tumhara wait kyun karta hoon?",
+        anim: "hearts",
+        opts: [
+          "Kyunke din ke aakhir mein tumhari aawaz aur tumhari presence hi mera sara sukoon hai.",
+          "Kyunke meri aadat ban chuki hai har baat tumhare sath share karne ki.",
+          "Kyunke tumhare bina mera koi bhi din complete feel hi nahi hota."
+        ]
       },
       {
-        q: "Ehtesham ki kaunsi aadat sab se annoying lagti hai jab ladai ho?",
-        opts: ["Ziyada explain karna shuru kar deta hai", "Foran react kar deta hai", "Baat ko overthink kar ke khamosh ho jana"]
+        q: "Tumhari university aur parhai mere liye bhi bohot important hai, par mera dil kya chahta hai?",
+        anim: "sparkles",
+        opts: [
+          "Din mein kitna bhi kaam ho, bas 2 minute ka ek chota sa update ya waqt ka ehsaas.",
+          "Ek choti si call taake mujhe pata ho ke tum theek ho aur mera khayal tumhare sath hai.",
+          "Dono mil kar apna time manage karein taake kisi ko akele wait na karna paray."
+        ]
       },
       {
-        q: "Dono mein se pehle kisay contact karna chahiye tha?",
-        opts: ["Ehtesham ko, no questions asked", "Jis ki ghalti thi usay", "Kisi ko bhi, bas ego nahi aani chahiye thi"]
+        q: "Sunday raat ko jab tum mujhe \"Mr Husband\" keh kar aur poetry bhej kar mana rahi theen, tab mere dil pe kya guzri?",
+        anim: "hearts",
+        opts: [
+          "Mera dil usi waqt pighal gaya tha, bas thoda sa dukh tha ke hum is mod tak pohnche kyun.",
+          "Tumhara har ek lafz bohot pyaara tha, par main chahta tha ke tum meri takleef ko sach mein mehsoos karo.",
+          "Mujhe ehsaas tha ke tum koshish kar rahi ho, aur wohi cheez mere liye bohot matter karti hai."
+        ]
       },
       {
-        q: "Sulha ki penalty kya honi chahiye?",
-        opts: ["Mera favorite khana treat pe milay", "Aik long drive jahan sirf meri marzi chalay", "Ehtesham confess karay ke wo wrong tha"]
+        q: "Jab tumne kaha tha \"Aap toh dil ke itne qareeb hain, khamoshi mein bhi aapka khayal sath rehta hai\", sach sach batao?",
+        anim: "hearts",
+        opts: [
+          "Yeh baat dil se nikli thi, mera khayal sach mein har pal tumhare sath tha?",
+          "Lafz sachay thay, dil se dil tk the",
+          "Main thori careless ho gayi thi par dil mein sirf apka hi naam hai."
+        ]
       },
       {
-        q: "Agar abhi call aye toh pehla sentence kya hoga?",
-        opts: ["Itni dair baad yaad aya?", "Chalo ab sab theek hai, bolo kaisay ho?", "Main abhi bhi thodi naaraz hoon"]
+        q: "Jab maine likha \"Ab sach me hi gum hogya hu me\", us waqt tumne mere bare mein kya socha?",
+        anim: "hearts",
+        opts: [
+          "Ehtesham ko meri sab se zyada zaroorat hai, mujhe foran call kar leni chahiye thi.",
+          "Ehtesham shyd andar se thak chuka hai aur usay sirf mera thora sa waqt aur reassurance chahiye.",
+          "Ap gum nahi hain mere dil me hain"
+        ]
       },
       {
-        q: "Agli dafa koi misunderstanding hui toh rule kya hoga?",
-        opts: ["24 ghantay se zyada koi khamosh nahi rahega", "Call par clear karein gay, chat par nahi", "Seedha meet-up kar ke issue solve karein gay"]
+        q: "Hum dono ke darmiyan aisa bond hai jo dooriyon ke liye nahi bana. Hamara aainda ka golden rule kya hona chahiye?",
+        anim: "stars",
+        opts: [
+          "Busy hone par pehle se ek pyara sa message kar dena taake koi intizar mein bechain na ho.",
+          "Din chahe kitna bhi tough guzray, 10 se 15 minute ki exclusive call lazmi hogi.",
+          "Dono mein se koi bhi hurt ho, texting ke bajaye seedha call par clear karega."
+        ]
       },
       {
-        q: "Is choti si website ko dekh kar kya rating hai?",
-        opts: ["10/10 effort ke pooray number hain", "Achha tareeqa hai mananay ka", "Cringe hai thoda par cute hai"]
+        q: "Tumhare hisab se main tumhari chhoti chhoti baton par itna sensitive kyun ho jata hoon?",
+        anim: "sparkles",
+        opts: [
+          "Kyunke main tumse bepanah mohabbat karta hoon aur tumhe khone ka dar rehta hai.",
+          "Kyunke tum mere aane wale kal ka sab se haseen hissa ho aur main har pal connected rehna chahta hoon.",
+          "Kyunke meri har khushi aur mera har mood tum se hi shuru hota hai."
+        ]
       },
       {
-        q: "Final verdict: Narazgi khatam ya aur nakhray baaqi hain?",
-        opts: ["Theek hai, maan gayi ab", "Thoda aur manao phir sochoongi", "Bas baat karo ab, drama band karo"]
+        q: "Ab yeh sab padh kar, mere aur tmhre intezar ko khatam karne ke liye tum kya karogi?",
+        anim: "hearts",
+        opts: [
+          "Abhi phone utha kar call karogi aur saari shikayatain gale laga kar khatam karogi.",
+          "Dil se ek pyara sa lamba message bhejogi",
+          "Maan logi ke tumhara \"Mr Husband\" tumhare liye sab se zaroori hai, aur ab muskura dogi."
+        ]
       }
     ];
 
@@ -431,6 +570,39 @@
       goToStep(step + 1);
     }
 
+    /* Screen-specific animation triggers */
+    function triggerScreenFX(step) {
+      const floatLayer = document.getElementById('floatingLayer');
+      floatLayer.innerHTML = '';
+
+      let symbolList = ['✦', '•'];
+      if (step === 0) {
+        symbolList = ['✨', '✦', '🤍'];
+      } else if (step === 11) {
+        symbolList = ['💖', '🌸', '✨', '🤍'];
+      } else {
+        const type = questionsData[step - 1]?.anim || 'sparkles';
+        if (type === 'hearts') symbolList = ['💖', '💕', '💗', '🤍'];
+        if (type === 'stars') symbolList = ['✨', '⭐', '✦'];
+        if (type === 'sparkles') symbolList = ['🌸', '✨', '✦'];
+      }
+
+      // Generate 14 floating objects across left and right sides
+      for (let i = 0; i < 14; i++) {
+        const el = document.createElement('div');
+        el.className = 'floating-el';
+        el.innerText = symbolList[Math.floor(Math.random() * symbolList.length)];
+        
+        // Spawn strictly towards the left or right edges
+        const isLeft = Math.random() < 0.5;
+        const xPos = isLeft ? Math.random() * 22 : 78 + Math.random() * 20;
+        el.style.left = xPos + '%';
+        el.style.animationDuration = (4 + Math.random() * 3.5) + 's';
+        el.style.animationDelay = (Math.random() * 2.5) + 's';
+        floatLayer.appendChild(el);
+      }
+    }
+
     function goToStep(step) {
       document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
       const nextCard = document.getElementById('card-' + step);
@@ -443,6 +615,8 @@
           else p.classList.remove('active');
         }
       }
+
+      triggerScreenFX(step);
     }
 
     function submitResponses() {
@@ -515,6 +689,7 @@
       requestAnimationFrame(animateParticles);
     }
     animateParticles();
+    triggerScreenFX(0);
   </script>
 </body>
 </html>
