@@ -1,9 +1,17 @@
+یہ رہا مکمل کوڈ رومن اردو (Roman Urdu) میں۔ فونٹ کو بھی صاف اور ماڈرن انگلش اسٹائل میں سیٹ کر دیا ہے تاکہ پڑھنے میں ایک دم خوبصورت لگے۔
+
+بس اپنی ریپوزٹری میں جا کر `index.html` کا سارا کوڈ مٹا کر یہ نیا کوڈ پیسٹ کر دیں۔
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ehtesham</title>
+  <title>A Special Message for Jia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -11,28 +19,199 @@
       padding: 0;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
+      background: radial-gradient(circle at top, #2e0854, #120324);
+      color: #fce7f3;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #0f172a;
-      color: #f8fafc;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 24px;
+      padding: 35px 25px;
+      max-width: 440px;
+      width: 100%;
       text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
     }
-    .container {
-      padding: 2rem;
+    .card.active {
+      display: block;
     }
-    h1 {
-      font-size: 3.5rem;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+      color: #f472b6;
       font-weight: 700;
-      letter-spacing: -0.02em;
+    }
+    .sher {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      font-style: italic;
+      margin: 18px 0;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 18px;
+      border-radius: 16px;
+      border-left: 3px solid #ec4899;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 0.98rem;
+      color: #e2e8f0;
+      margin-bottom: 15px;
+    }
+    .photo-frame {
+      width: 125px;
+      height: 125px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      border: 3px solid #ec4899;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.35);
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    button, .action-link {
+      background: linear-gradient(135deg, #ec4899, #be185d);
+      color: white;
+      border: none;
+      padding: 14px 18px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 14px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: block;
+    }
+    button:hover, .action-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(236, 72, 153, 0.4);
+    }
+    button.alt-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    button.alt-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+    .dots {
+      margin-top: 18px;
+      font-size: 0.85rem;
+      opacity: 0.5;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Ehtesham</h1>
+
+  <!-- Step 1: Greeting -->
+  <div class="card active" id="step1">
+    <div class="photo-frame">
+      <img src="photo.jpg" alt="Special Photo" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400'">
+    </div>
+    <h2>Do Din Bohat Lambay Hotay Hain...</h2>
+    <div class="sher">
+      "Na janay kis liye hum rooth baithay aik doojay se,<br>
+      Magar ab shaam ka sona nahi achha laga hum ko."
+    </div>
+    <p>Baat band hai lekin khayal to har lamha hai na? Kuch chotay se sawal hain, sach sach jawab dena hoga.</p>
+    <div class="btn-group">
+      <button onclick="goTo(2)">Aage Chalo Aur Jawab Do &rarr;</button>
+    </div>
+    <div class="dots">1 / 4</div>
   </div>
+
+  <!-- Step 2: Question 1 -->
+  <div class="card" id="step2">
+    <h2>Pehla Sawal</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 22px;">
+      Yeh jo 2 din se khamoshi chal rahi hai, is doran sab se zyada kis ne yaad kiya hoga?
+    </p>
+    <div class="btn-group">
+      <button onclick="selectAns('Maine zyada yaad kiya', 3)">Zahir hai maine (Jia ne)</button>
+      <button class="alt-btn" onclick="selectAns('Ehtesham ne zyada yaad kiya', 3)">Ehtesham ne, wo pagal ho raha hai</button>
+      <button class="alt-btn" onclick="selectAns('Dono ne barabar yaad kiya', 3)">Dono ne barabar, bas zid beech mein agayi</button>
+    </div>
+    <div class="dots">2 / 4</div>
+  </div>
+
+  <!-- Step 3: Question 2 -->
+  <div class="card" id="step3">
+    <h2>Dusra Sawal</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 22px;">
+      Gussa khatam karne ke liye kya plan sab se behtar rahay ga?
+    </p>
+    <div class="btn-group">
+      <button onclick="selectAns('Ehtesham treat de', 4)">Ehtesham aik achi si treat de</button>
+      <button class="alt-btn" onclick="selectAns('Lambi call aur hansi', 4)">Aik lambi call ho jis mein sirf hansi mazaq ho</button>
+      <button class="alt-btn" onclick="selectAns('Gussa khatam maan rahi hoon', 4)">Bas bohat ho gaya gussa, ab maan rahi hoon</button>
+    </div>
+    <div class="dots">3 / 4</div>
+  </div>
+
+  <!-- Step 4: Resolution & WhatsApp -->
+  <div class="card" id="step4">
+    <h2>Ab Muskura Bhi Dain!</h2>
+    <div class="sher">
+      "Tum jo hans do to sabhi ranj mitaane aayen,<br>
+      Hum to bas tum ko mana lene ke bahaane laayen."
+    </div>
+    <p>
+      N नाराजगी apni jagah, lekin aap ki muskurahat bohat zaroori hai. Neechay click karein aur WhatsApp par reply bhaijein!
+    </p>
+    <div class="btn-group">
+      <a id="waBtn" class="action-link" href="#" target="_blank">Maan Gayi, Message Karo &rarr;</a>
+    </div>
+    <div class="dots">4 / 4</div>
+  </div>
+
+  <script>
+    let answers = [];
+
+    function goTo(step) {
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+      document.getElementById('step' + step).classList.add('active');
+    }
+
+    function selectAns(text, nextStep) {
+      answers.push(text);
+      if (nextStep === 4) {
+        setupWhatsApp();
+      }
+      goTo(nextStep);
+    }
+
+    function setupWhatsApp() {
+      const msg = encodeURIComponent("Hey Ehtesham! Maine page dekha.\n\nMere answers yeh hain:\n- " + answers.join("\n- ") + "\n\nChalo ab narazgi khatam karein!");
+      // Default share intent (user can pick Ehtesham from chat list directly)
+      document.getElementById('waBtn').href = "https://api.whatsapp.com/send?text=" + msg;
+    }
+  </script>
 </body>
 </html>
+
+```
+
+* اگر آپ تصویر لگانا چاہتے ہیں تو گٹ ہب میں اسی جگہ `photo.jpg` کے نام سے تصویر اپلوڈ کر دیں، وہ خود بخود نظر آنا شروع ہو جائے گی۔ اگر نہیں بھی کریں گے تو فال بیک کے طور پر خوبصورت ڈیفالٹ تصویر دکھے گی۔
