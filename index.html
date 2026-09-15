@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Someone Special</title>
+  <title>A Special Question Sheet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #f43f5e;
       --primary-hover: #e11d48;
       --accent: #fb7185;
-      --bg-dark: #07090e;
-      --card-bg: rgba(255, 255, 255, 0.04);
-      --card-border: rgba(255, 255, 255, 0.1);
+      --bg-dark: #07080d;
+      --card-bg: rgba(18, 20, 29, 0.65);
+      --card-border: rgba(255, 255, 255, 0.12);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
     }
@@ -34,81 +34,98 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px;
+      padding: 30px 20px;
       position: relative;
       overflow-x: hidden;
     }
 
-    /* Ambient luxury light spheres */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      z-index: 0;
+    /* Ambient Side Particles Canvas */
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
-      animation: floatOrb 12s ease-in-out infinite alternate;
-    }
-    .orb-1 {
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle, rgba(244, 63, 94, 0.25), transparent 70%);
-      top: 5%;
-      left: 10%;
-    }
-    .orb-2 {
-      width: 380px;
-      height: 380px;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.2), transparent 70%);
-      bottom: 5%;
-      right: 10%;
-      animation-delay: -6s;
+      z-index: 0;
     }
 
-    @keyframes floatOrb {
+    /* Left and Right Glow Spheres */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .orb-left {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(244, 63, 94, 0.35), transparent 70%);
+      left: -120px;
+      top: 25%;
+      animation: pulseLeft 10s ease-in-out infinite alternate;
+    }
+    .orb-right {
+      width: 460px;
+      height: 460px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent 70%);
+      right: -140px;
+      top: 40%;
+      animation: pulseRight 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseLeft {
       0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-40px) scale(1.1); }
+      100% { transform: translateY(80px) scale(1.15); }
+    }
+    @keyframes pulseRight {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-70px) scale(1.12); }
     }
 
     .wrapper {
       width: 100%;
-      max-width: 480px;
+      max-width: 520px;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
-    /* Progress pill */
+    /* Progress Indicators */
     .progress-bar {
       display: flex;
-      justify-content: center;
-      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+      gap: 5px;
       margin-bottom: 24px;
+      padding: 0 4px;
     }
     .pill {
       height: 4px;
-      width: 28px;
-      background: rgba(255, 255, 255, 0.15);
+      flex: 1;
+      background: rgba(255, 255, 255, 0.12);
       border-radius: 99px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.35s ease;
     }
     .pill.active {
-      width: 48px;
       background: var(--primary);
-      box-shadow: 0 0 12px rgba(244, 63, 94, 0.5);
+      box-shadow: 0 0 10px rgba(244, 63, 94, 0.6);
     }
 
-    /* Glass card container */
+    /* Glass Container */
     .card {
       background: var(--card-bg);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
+      backdrop-filter: blur(35px);
+      -webkit-backdrop-filter: blur(35px);
       border: 1px solid var(--card-border);
       border-radius: 28px;
-      padding: 40px 28px;
-      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.65);
+      padding: 38px 28px;
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.7);
       display: none;
       opacity: 0;
-      transform: translateY(18px) scale(0.98);
-      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(16px) scale(0.98);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .card.active {
       display: block;
@@ -126,45 +143,43 @@
       background: rgba(244, 63, 94, 0.12);
       border: 1px solid rgba(244, 63, 94, 0.3);
       color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 20px;
+      font-weight: 600;
+      margin-bottom: 18px;
     }
 
     h1, h2 {
-      font-size: 1.65rem;
+      font-size: 1.55rem;
       font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.35;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: #ffffff;
     }
 
     .poetry-box {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       line-height: 1.7;
       font-style: italic;
       color: #ffe4e6;
-      background: rgba(255, 255, 255, 0.025);
-      border-left: 2px solid var(--primary);
-      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid var(--primary);
+      padding: 16px 18px;
       border-radius: 0 16px 16px 0;
-      margin: 22px 0;
-      text-align: left;
+      margin: 18px 0;
     }
 
     p.subtitle {
-      font-size: 0.95rem;
-      line-height: 1.6;
+      font-size: 0.92rem;
+      line-height: 1.55;
       color: var(--text-muted);
-      margin-bottom: 26px;
+      margin-bottom: 22px;
     }
 
     .avatar-wrapper {
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 22px;
-      position: relative;
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 20px;
     }
     .avatar-ring {
       width: 100%;
@@ -182,227 +197,324 @@
       background-color: #1e293b;
     }
 
-    /* Interactive Quiz Options */
+    /* Option Items */
     .options-grid {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       margin-top: 10px;
     }
     .opt-btn {
       width: 100%;
       text-align: left;
-      padding: 16px 20px;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
+      padding: 15px 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 14px;
       color: var(--text-main);
-      font-size: 0.96rem;
+      font-size: 0.94rem;
       font-family: inherit;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: all 0.25s ease;
+      transition: all 0.22s ease;
     }
     .opt-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(244, 63, 94, 0.4);
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(244, 63, 94, 0.45);
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-    }
-    .opt-btn span.icon {
-      opacity: 0.4;
-      font-size: 1.1rem;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-    .opt-btn:hover span.icon {
-      opacity: 1;
-      transform: translateX(4px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
     }
 
-    /* Primary CTA */
+    /* Custom Text Input Drawer */
+    .custom-input-box {
+      margin-top: 12px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .custom-input-box.open {
+      display: flex;
+    }
+    .custom-input-box input {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 0.92rem;
+      font-family: inherit;
+      outline: none;
+    }
+    .custom-input-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(244, 63, 94, 0.3);
+    }
+
+    /* Buttons */
     .primary-btn {
       width: 100%;
       background: linear-gradient(135deg, #f43f5e, #be123c);
       color: #fff;
-      font-weight: 500;
-      font-size: 1rem;
-      padding: 16px 24px;
-      border-radius: 16px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      padding: 15px 22px;
+      border-radius: 14px;
       border: none;
       cursor: pointer;
       font-family: inherit;
-      box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.45);
-      transition: all 0.25s ease;
+      box-shadow: 0 8px 24px -4px rgba(244, 63, 94, 0.45);
+      transition: all 0.22s ease;
       display: inline-block;
       text-decoration: none;
       text-align: center;
-      box-sizing: border-box;
+      margin-top: 8px;
     }
     .primary-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px -4px rgba(244, 63, 94, 0.6);
+      box-shadow: 0 12px 28px -4px rgba(244, 63, 94, 0.6);
       filter: brightness(1.05);
-    }
-
-    /* Feedback alert animation */
-    .note-tag {
-      font-size: 0.8rem;
-      color: var(--accent);
-      margin-top: 14px;
-      text-align: center;
-      display: block;
-      opacity: 0.8;
     }
   </style>
 </head>
 <body>
 
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
+  <!-- Dynamic Left and Right Ambient Graphics -->
+  <canvas id="particles-canvas"></canvas>
+  <div class="orb orb-left"></div>
+  <div class="orb orb-right"></div>
 
   <div class="wrapper">
     <!-- Progress Indicator -->
-    <div class="progress-bar">
-      <div class="pill active" id="p1"></div>
-      <div class="pill" id="p2"></div>
-      <div class="pill" id="p3"></div>
-      <div class="pill" id="p4"></div>
-      <div class="pill" id="p5"></div>
-    </div>
+    <div class="progress-bar" id="progressBar"></div>
 
-    <!-- Step 1: Opening -->
-    <div class="card active" id="step1">
+    <!-- Screen 1: Intro -->
+    <div class="card active" id="card-0">
       <div class="avatar-wrapper">
         <div class="avatar-ring">
           <img class="avatar-img" src="photo.jpg" alt="Profile" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300'">
         </div>
       </div>
-      <div class="badge">A Quick Reminder</div>
+      <div class="badge">A Serious Truce</div>
       <h1>Two Days Is Far Too Long</h1>
       <div class="poetry-box">
         "Na janay kis liye hum rooth baithay aik doojay se,<br>
         Magar ab shaam ka sona nahi achha laga hum ko."
       </div>
-      <p class="subtitle">Khamoshi bohot lambi ho gayi hai. Zid ko thodi der side pe rakh ke aage chaltay hain?</p>
-      <button class="primary-btn" onclick="nextStep(2)">Aage Chalo &rarr;</button>
+      <p class="subtitle">Khamoshi khatam karni hai. Agay 10 chotay sawalat hain, jo feel ho raha hai honestly select karo ya khud likh do.</p>
+      <button class="primary-btn" onclick="goToStep(1)">Start &rarr;</button>
     </div>
 
-    <!-- Step 2: Question 1 -->
-    <div class="card" id="step2">
-      <div class="badge">Question 01</div>
-      <h2>Yeh batao, in do dino mein zyada miss kisne kiya?</h2>
-      <p class="subtitle">Sach bolna compulsory hai, cheating allowed nahi hai.</p>
-      <div class="options-grid">
-        <button class="opt-btn" onclick="saveAnswer('Maine zyada miss kiya', 3)">
-          <span>Obviously maine, par show nahi kiya</span>
-          <span class="icon">&rarr;</span>
-        </button>
-        <button class="opt-btn" onclick="saveAnswer('Ehtesham ne miss kiya', 3)">
-          <span>Ehtesham ne, uski to neendain urri huwi hain</span>
-          <span class="icon">&rarr;</span>
-        </button>
-        <button class="opt-btn" onclick="saveAnswer('Dono ne barabar miss kiya', 3)">
-          <span>Dono ne equally, bas faltu ki ego aa gayi</span>
-          <span class="icon">&rarr;</span>
-        </button>
-      </div>
-    </div>
+    <!-- Question cards injected by JavaScript -->
+    <div id="questions-container"></div>
 
-    <!-- Step 3: Question 2 -->
-    <div class="card" id="step3">
-      <div class="badge">Question 02</div>
-      <h2>Current mood kya chal raha hai?</h2>
-      <p class="subtitle">Screen ke peeche ka asli reaction select karein.</p>
-      <div class="options-grid">
-        <button class="opt-btn" onclick="saveAnswer('Abhi bhi thoda sa gussa', 4)">
-          <span>Thoda sa gussa baki hai, itni asani se nahi manungi</span>
-          <span class="icon">&rarr;</span>
-        </button>
-        <button class="opt-btn" onclick="saveAnswer('Muskura rahi hoon', 4)">
-          <span>Ye page dekh kar smile aa gayi par control kar rahi hoon</span>
-          <span class="icon">&rarr;</span>
-        </button>
-        <button class="opt-btn" onclick="saveAnswer('Ready to talk', 4)">
-          <span>I just want to end this silence right now</span>
-          <span class="icon">&rarr;</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Step 4: Question 3 -->
-    <div class="card" id="step4">
-      <div class="badge">Question 03</div>
-      <h2>Sulha ka contract kya hona chahiye?</h2>
-      <p class="subtitle">Penalty Ehtesham pay karega, choice aapki hai.</p>
-      <div class="options-grid">
-        <button class="opt-btn" onclick="saveAnswer('Long drive and favorite food', 5)">
-          <span>Aik long drive aur mera favorite khana</span>
-          <span class="icon">&rarr;</span>
-        </button>
-        <button class="opt-btn" onclick="saveAnswer('Late night call with no arguments', 5)">
-          <span>Aik lambi call jahan sirf achi batien hongi</span>
-          <span class="icon">&rarr;</span>
-        </button>
-        <button class="opt-btn" onclick="saveAnswer('Ehtesham confesses I am always right', 5)">
-          <span>Ye accept karo ke har dafa ghalti tumhari hoti hai</span>
-          <span class="icon">&rarr;</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Step 5: Final Resolution -->
-    <div class="card" id="step5">
-      <div class="badge">Truce Sealed</div>
-      <h1>Ab Muskura Bhi Dain!</h1>
+    <!-- Final Screen -->
+    <div class="card" id="card-11">
+      <div class="badge">Final Step</div>
+      <h1>Ready To Submit?</h1>
       <div class="poetry-box">
         "Tum jo hans do to sabhi ranj mitaane aayen,<br>
         Hum to bas tum ko mana lene ke bahaane laayen."
       </div>
-      <p class="subtitle">N नाराजगी apni jagah, but life is simply better when we are talking. Neechay click karo aur WhatsApp par reply bhejo.</p>
-      <a id="whatsappCta" class="primary-btn" href="#" target="_blank">Maan Gayi, Message Dekho &rarr;</a>
-      <span class="note-tag">Direct WhatsApp pre-filled response</span>
+      <p class="subtitle">Aap ke tamam answers compile ho chukay hain. Neechay click karein taakay yeh record submit ho jaye.</p>
+      <button class="primary-btn" id="submitBtn" onclick="submitResponses()">Save & Send To Ehtesham &rarr;</button>
     </div>
   </div>
 
   <script>
-    const userResponses = [];
-
-    function nextStep(stepNumber) {
-      document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
-      const activeCard = document.getElementById('step' + stepNumber);
-      if (activeCard) activeCard.classList.add('active');
-
-      document.querySelectorAll('.pill').forEach((pill, idx) => {
-        if (idx < stepNumber) {
-          pill.classList.add('active');
-        } else {
-          pill.classList.remove('active');
-        }
-      });
-    }
-
-    function saveAnswer(selectedText, targetStep) {
-      userResponses.push(selectedText);
-      if (targetStep === 5) {
-        generateWhatsAppLink();
+    const questionsData = [
+      {
+        q: "In 2 dino mein sab se zyada miss kis ne kiya?",
+        opts: ["Obviously maine, bas bataya nahi", "Ehtesham ne, uski neendain urri huwi hain", "Dono ne equally, bas faltu ego beech mein thi"]
+      },
+      {
+        q: "Gussay ka main reason kya tha?",
+        opts: ["Meri baat sahi se suni nahi gayi", "Timing bohat ghalat thi", "Faltu ka misunderstanding tha jo barh gaya"]
+      },
+      {
+        q: "Current mood kaisa chal raha hai?",
+        opts: ["Abhi bhi halka sa gussa baki hai", "Smile aa gayi hai par control kar rahi hoon", "Bas ab khatam karo yeh doori"]
+      },
+      {
+        q: "Ehtesham ki kaunsi aadat sab se annoying lagti hai jab ladai ho?",
+        opts: ["Ziyada explain karna shuru kar deta hai", "Foran react kar deta hai", "Baat ko overthink kar ke khamosh ho jana"]
+      },
+      {
+        q: "Dono mein se pehle kisay contact karna chahiye tha?",
+        opts: ["Ehtesham ko, no questions asked", "Jis ki ghalti thi usay", "Kisi ko bhi, bas ego nahi aani chahiye thi"]
+      },
+      {
+        q: "Sulha ki penalty kya honi chahiye?",
+        opts: ["Mera favorite khana treat pe milay", "Aik long drive jahan sirf meri marzi chalay", "Ehtesham confess karay ke wo wrong tha"]
+      },
+      {
+        q: "Agar abhi call aye toh pehla sentence kya hoga?",
+        opts: ["Itni dair baad yaad aya?", "Chalo ab sab theek hai, bolo kaisay ho?", "Main abhi bhi thodi naaraz hoon"]
+      },
+      {
+        q: "Agli dafa koi misunderstanding hui toh rule kya hoga?",
+        opts: ["24 ghantay se zyada koi khamosh nahi rahega", "Call par clear karein gay, chat par nahi", "Seedha meet-up kar ke issue solve karein gay"]
+      },
+      {
+        q: "Is choti si website ko dekh kar kya rating hai?",
+        opts: ["10/10 effort ke pooray number hain", "Achha tareeqa hai mananay ka", "Cringe hai thoda par cute hai"]
+      },
+      {
+        q: "Final verdict: Narazgi khatam ya aur nakhray baaqi hain?",
+        opts: ["Theek hai, maan gayi ab", "Thoda aur manao phir sochoongi", "Bas baat karo ab, drama band karo"]
       }
-      nextStep(targetStep);
+    ];
+
+    const answersRecord = {};
+
+    const container = document.getElementById('questions-container');
+    const progressBar = document.getElementById('progressBar');
+
+    for (let i = 0; i < 12; i++) {
+      const p = document.createElement('div');
+      p.className = 'pill' + (i === 0 ? ' active' : '');
+      p.id = 'pill-' + i;
+      progressBar.appendChild(p);
     }
 
-    function generateWhatsAppLink() {
-      const compiledText = 
-        "Hey Ehtesham! Page check kar liya maine.\n\n" +
-        "Mere responses:\n" +
-        "1. " + (userResponses[0] || "N/A") + "\n" +
-        "2. " + (userResponses[1] || "N/A") + "\n" +
-        "3. " + (userResponses[2] || "N/A") + "\n\n" +
-        "Chalo ab baat khatam karo aur call karo!";
+    questionsData.forEach((item, idx) => {
+      const step = idx + 1;
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.id = 'card-' + step;
 
-      const encoded = encodeURIComponent(compiledText);
-      document.getElementById('whatsappCta').href = "https://api.whatsapp.com/send?text=" + encoded;
+      let optionsHTML = item.opts.map(opt => `
+        <button class="opt-btn" onclick="chooseOption(${step}, '${opt.replace(/'/g, "\\'")}')">
+          <span>${opt}</span>
+          <span style="opacity:0.4">&rarr;</span>
+        </button>
+      `).join('');
+
+      optionsHTML += `
+        <button class="opt-btn" onclick="toggleCustomInput(${step})">
+          <span>Other (Type your own answer)</span>
+          <span style="opacity:0.4">&#9998;</span>
+        </button>
+        <div class="custom-input-box" id="custom-box-${step}">
+          <input type="text" id="custom-val-${step}" placeholder="Yahan apna jawab likhein..." />
+          <button class="primary-btn" style="padding:10px 14px; font-size:0.85rem;" onclick="saveCustomOption(${step})">Next &rarr;</button>
+        </div>
+      `;
+
+      card.innerHTML = `
+        <div class="badge">Question 0${step < 10 ? '0' + step : step} / 10</div>
+        <h2>${item.q}</h2>
+        <p class="subtitle">Choose an option or type your own below.</p>
+        <div class="options-grid">${optionsHTML}</div>
+      `;
+      container.appendChild(card);
+    });
+
+    function toggleCustomInput(step) {
+      const el = document.getElementById('custom-box-' + step);
+      el.classList.toggle('open');
+      if (el.classList.contains('open')) {
+        document.getElementById('custom-val-' + step).focus();
+      }
     }
+
+    function chooseOption(step, val) {
+      answersRecord['Q' + step + ': ' + questionsData[step - 1].q] = val;
+      goToStep(step + 1);
+    }
+
+    function saveCustomOption(step) {
+      const val = document.getElementById('custom-val-' + step).value.trim();
+      answersRecord['Q' + step + ': ' + questionsData[step - 1].q] = val || "No comment typed";
+      goToStep(step + 1);
+    }
+
+    function goToStep(step) {
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+      const nextCard = document.getElementById('card-' + step);
+      if (nextCard) nextCard.classList.add('active');
+
+      for (let i = 0; i < 12; i++) {
+        const p = document.getElementById('pill-' + i);
+        if (p) {
+          if (i <= step) p.classList.add('active');
+          else p.classList.remove('active');
+        }
+      }
+    }
+
+    function submitResponses() {
+      let bodyText = "### Truce Responses Received:\n\n";
+      for (const [q, a] of Object.entries(answersRecord)) {
+        bodyText += `**${q}**\n- ${a}\n\n`;
+      }
+
+      const repoUrl = "https://github.com/OffEhtesham/someone/issues/new";
+      const params = "?title=" + encodeURIComponent("Responses from Jia") + "&body=" + encodeURIComponent(bodyText);
+      
+      window.open(repoUrl + params, '_blank');
+      
+      document.getElementById('card-11').innerHTML = `
+        <div class="badge">Submitted</div>
+        <h1>Responses Compiled</h1>
+        <p class="subtitle" style="margin-top:20px;">All 10 answers have been generated for your repository record.</p>
+      `;
+    }
+
+    /* Ambient Particle Canvas */
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        const isLeft = Math.random() < 0.5;
+        this.x = isLeft ? Math.random() * (canvas.width * 0.28) : canvas.width - (Math.random() * (canvas.width * 0.28));
+        this.y = Math.random() * canvas.height;
+        this.radius = Math.random() * 2.5 + 1;
+        this.vy = -(Math.random() * 0.7 + 0.3);
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.alpha = Math.random() * 0.5 + 0.2;
+        this.color = Math.random() > 0.4 ? '244, 63, 94' : '168, 85, 247';
+      }
+      update() {
+        this.y += this.vy;
+        this.x += this.vx;
+        if (this.y < 0) this.reset();
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 45; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
   </script>
 </body>
 </html>
