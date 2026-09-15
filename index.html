@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>For My Jia | Ehtesham</title>
   
-  <!-- SEO & Social Meta Tags -->
   <meta name="description" content="A special personal sanctuary built with love for Jia by Ehtesham.">
   <meta name="theme-color" content="#07080d">
   <meta property="og:title" content="A Special Message for Jia">
@@ -132,7 +131,6 @@
       z-index: 99;
     }
 
-    /* Floating Dynamic FX Layer */
     .fx-layer {
       position: fixed;
       top: 0;
@@ -179,7 +177,6 @@
       100% { transform: translateY(-70px) scale(1.15); }
     }
 
-    /* Wrapper */
     .wrapper {
       width: 100%;
       max-width: 530px;
@@ -408,7 +405,6 @@
       filter: brightness(1.08);
     }
 
-    /* Final Screen Confession Box */
     .confession-card {
       text-align: center;
     }
@@ -474,7 +470,7 @@
       <button class="primary-btn" onclick="goToStep(1)">Start &rarr;</button>
     </div>
 
-    <!-- Questions Container (Cards 1 to 10) -->
+    <!-- Questions Container -->
     <div id="questions-container"></div>
 
     <!-- Screen 11: Final Auto-Submitted Screen -->
@@ -487,17 +483,18 @@
         Hum to bas tum ko mana lene ke bahaane laayen."
       </div>
       <p class="subtitle" style="color: #ffe4e6; font-size: 1.05rem; line-height: 1.8;">
-        Aap ke saare answers direct Ehtesham ke dil aur inbox tak pohnch chukay hain.<br>
+        Aap ke saare answers direct Ehtesham ke paas pohnch chukay hain.<br>
         <strong>Ab gussa khatam, faaslay khatam. Phone uthao aur baat karo!</strong>
       </p>
     </div>
   </div>
 
   <script>
+    const USER_ACCESS_KEY = "fbfc4e5a-a729-4f62-8683-b04a8e947cf9";
+
     const questionsData = [
       {
         q: "In do dino ke communication gap par honestly socho, tumhe kya lagta hai?",
-        anim: "petals",
         opts: [
           "Main bas thodi si over expectation kar baitha tha.",
           "Tum busy zaroor theen, par thoda sa priorities balance out hone se reh gayi theen.",
@@ -506,7 +503,6 @@
       },
       {
         q: "Jab maine kaha tha \"Shayad over expectation kills\", us waqt tumhe kya lagta hai mere dil mein kya tha?",
-        anim: "heartsRain",
         opts: [
           "Koi gussa ya ego nahi, bas yeh dar ke shayad meri value aur waqt utna count nahi hota.",
           "Main bas chahta tha ke tum meri taraf thoda aur dhyan do.",
@@ -515,7 +511,6 @@
       },
       {
         q: "Main apne pure din ki thakan, kaam aur routine ke baad sab se pehle tumhara wait kyun karta hoon?",
-        anim: "bubbles",
         opts: [
           "Kyunke din ke aakhir mein tumhari aawaz aur tumhari presence hi mera sara sukoon hai.",
           "Kyunke meri aadat ban chuki hai har baat tumhare sath share karne ki.",
@@ -524,7 +519,6 @@
       },
       {
         q: "Tumhari university aur parhai mere liye bhi bohot important hai, par mera dil kya chahta hai?",
-        anim: "cosmos",
         opts: [
           "Din mein kitna bhi kaam ho, bas 2 minute ka ek chota sa update ya waqt ka ehsaas.",
           "Ek choti si call taake mujhe pata ho ke tum theek ho aur mera khayal tumhare sath hai.",
@@ -533,7 +527,6 @@
       },
       {
         q: "Sunday raat ko jab tum mujhe \"Mr Husband\" keh kar aur poetry bhej kar mana rahi theen, tab mere dil pe kya guzri?",
-        anim: "pulseHearts",
         opts: [
           "Mera dil usi waqt pighal gaya tha, bas thoda sa dukh tha ke hum is mod tak pohnche kyun.",
           "Tumhara har ek lafz bohot pyaara tha, par main chahta tha ke tum meri takleef ko sach mein mehsoos karo.",
@@ -542,7 +535,6 @@
       },
       {
         q: "Jab tumne kaha tha \"Aap toh dil ke itne qareeb hain, khamoshi mein bhi aapka khayal sath rehta hai\", sach sach batao?",
-        anim: "butterflies",
         opts: [
           "Yeh baat dil se nikli thi, mera khayal sach mein har pal tumhare sath tha?",
           "Lafz sachay thay, dil se dil tk the",
@@ -551,7 +543,6 @@
       },
       {
         q: "Jab maine likha \"Ab sach me hi gum hogya hu me\", us waqt tumne mere bare mein kya socha?",
-        anim: "embers",
         opts: [
           "Ehtesham ko meri sab se zyada zaroorat hai, mujhe foran call kar leni chahiye thi.",
           "Ehtesham shyd andar se thak chuka hai aur usay sirf mera thora sa waqt aur reassurance chahiye.",
@@ -560,7 +551,6 @@
       },
       {
         q: "Hum dono ke darmiyan aisa bond hai jo dooriyon ke liye nahi bana. Hamara aainda ka golden rule kya hona chahiye?",
-        anim: "sakura",
         opts: [
           "Busy hone par pehle se ek pyara sa message kar dena taake koi intizar mein bechain na ho.",
           "Din chahe kitna bhi tough guzray, 10 se 15 minute ki exclusive call lazmi hogi.",
@@ -569,7 +559,6 @@
       },
       {
         q: "Tumhare hisab se main tumhari chhoti chhoti baton par itna sensitive kyun ho jata hoon?",
-        anim: "fireflies",
         opts: [
           "Kyunke main tumse bepanah mohabbat karta hoon aur tumhe khone ka dar rehta hai.",
           "Kyunke tum mere aane wale kal ka sab se haseen hissa ho aur main har pal connected rehna chahta hoon.",
@@ -578,7 +567,6 @@
       },
       {
         q: "Ab yeh sab padh kar, mere aur tmhre intezar ko khatam karne ke liye tum kya karogi?",
-        anim: "cyclone",
         opts: [
           "Abhi phone utha kar call karogi aur saari shikayatain gale laga kar khatam karogi.",
           "Dil se ek pyara sa lamba message bhejogi",
@@ -655,7 +643,7 @@
     function handleCustomSave(step) {
       if (answersRecord['Q' + step]) return;
       const val = document.getElementById('custom-val-' + step).value.trim();
-      answersRecord['Q' + step] = { question: questionsData[step - 1].q, answer: val || "No specific note written" };
+      answersRecord['Q' + step] = { question: questionsData[step - 1].q, answer: val || "No note written" };
       
       if (step === 10) {
         executeInstantSilentSubmit();
@@ -685,10 +673,9 @@
       if (isSubmitting) return;
       isSubmitting = true;
 
-      // Immediately move to celebration screen
       goToStep(11);
 
-      let formattedText = "Jia's Answers To The Truce Page:\n\n";
+      let formattedText = "Jia's Responses To The Truce Page:\n\n";
       for (let i = 1; i <= 10; i++) {
         const item = answersRecord['Q' + i];
         if (item) {
@@ -696,23 +683,36 @@
         }
       }
 
-      // Silent background post to your email
+      // Local safety backup
+      try {
+        localStorage.setItem('jia_truce_answers', formattedText);
+      } catch (e) {}
+
+      // Background Email API
       try {
         await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
           body: JSON.stringify({
-            access_key: "f3c5f4b5-684c-47ea-8d14-1e0e89133379",
+            access_key: USER_ACCESS_KEY,
             subject: "Jia's Responses to Your Truce Page",
             from_name: "Jia",
-            to_email: "offehtesham@gmail.com",
             message: formattedText
           })
         });
       } catch (err) {
-        // Fail silently in background so user experience is never broken
+        console.error("Submission error:", err);
       }
     }
+
+    // Shortcut to view backup answers on final screen: Ctrl + Shift + R
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'r') {
+        const saved = localStorage.getItem('jia_truce_answers');
+        if (saved) alert(saved);
+        else alert("No answers recorded on this browser yet.");
+      }
+    });
 
     /* 10 Unique Screen Animations */
     function triggerUniqueScreenFX(step) {
@@ -720,8 +720,6 @@
       fx.innerHTML = '';
 
       let items = ['✨', '💖'];
-      let animName = 'fxFloatUp';
-
       if (step === 0) items = ['✨', '✦', '🤍', '💫'];
       else if (step === 1) items = ['🌹', '🥀', '🍃'];
       else if (step === 2) items = ['💖', '💕', '💗'];
